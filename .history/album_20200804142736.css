@@ -154,7 +154,7 @@
 
   .card-deck > .trans-3d {
     max-width: 21.375rem;
-    padding-left: 0.5rem;
+    padding-left: auto;
     padding-right: auto;
   }
 }
@@ -435,11 +435,12 @@ input {
 .btn-secondary-group > .btn span,
 .btn-secondary-group-sm > .btn span {
   content: "";
+  background-size: cover;
   /* background-color: #505050; */
   display: inline-block;
   position: absolute;
-  width: 13px;
-  height: 13px;
+  width: 16px;
+  height: 15px;
   left: 0.5rem;
   top: 0.45rem;
 }
@@ -521,16 +522,14 @@ input {
   padding-bottom: 0.25rem;
   padding-left: 1.5rem;
   padding-right: 0.5rem;
+
+  background-color: #9BC6F480;
 }
 
-.btn-primary-group-sm > .btn-block + .btn-block {
+.btn-primary-group-sm > .btn-block + .btn-block,
+.btn-secondary-group-sm > .btn+ .btn {
   margin-top: 0;
   margin-left: 0.25rem;
-}
-
-.btn-secondary-group-sm > .btn {
-  margin-top: 0.25rem;
-  margin-right: 0.25rem;
 }
 
 .btn-secondary-group-sm {

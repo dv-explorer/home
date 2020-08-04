@@ -41,10 +41,11 @@ function setupInteraction() {
     // activate responsive responsive header + filter panel layout
     $(window).resize(function() {
         var classStr = panelLayout();
-        if(classStr.length < 5){
+        console.log(classStr);
+        if(classStr === "-sm"){
             $("div.btn-primary-group").removeClass("btn-primary-group list-group").addClass("btn-primary-group-sm");
             $("div.btn-secondary-group").removeClass("btn-secondary-group").addClass("btn-secondary-group-sm");
-            $("div.btn-secondary-group-sm > .btn").removeClass("btn-block");
+            $("div.btn-secondary-group > .btn").removeClass("btn-block");
         } else {
             $("div.btn-primary-group-sm").removeClass("btn-primary-group-sm").addClass("btn-primary-group" + classStr);
             $("div.btn-secondary-group-sm").removeClass("btn-secondary-group-sm").addClass("btn-secondary-group" + classStr.replace(" list-group", ""));
@@ -257,8 +258,9 @@ function createNS(NS_doc) {
 // x == 0 .disabled
 function createEL(EL_doc, x) {
     var classStr = "btn-secondary-group" + panelLayout().replace(" list-group", "");
+
     var btnClassStr = " btn-block";
-    if(classStr.length === 0) {
+    if(classStr === "-sm") {
         btnClassStr = "";
     }
 
@@ -276,11 +278,7 @@ function createEL(EL_doc, x) {
             EL_Group.append($("<button></button>").addClass("btn text-left" + btnClassStr)
                 .addClass(EL_code)
                 .text(EL_tag)
-                .prepend($("<span></span>").css({
-                    "background": "url(assets/media/" + EL_code + ".svg) no-repeat",
-                    "background-size": "cover",
-                    "background-position": "center"
-                })));
+                .prepend($("<span></span>").css("background", "url(assets/media/" + EL_code + ".svg) no-repeat")));
             
             // document.styleSheets[0].addRule('.btn-secondary-group > .btn.' + EL_code + ':before', 'background-color: ' + 'url(assets\/media\/' + EL_code + '.svg) no-repeat');
             // document.styleSheets[0].addRule('.' + EL_code + ' .card-header > p:before', 'background-color: url(assets/media/in' + EL_code + '.svg) no-repeat');
@@ -399,7 +397,7 @@ function drawCardHeader(ds_tag, EL_tag, card_color) {
     headerElement.append(headTitle)
         .append(headP)
         .css("background", card_color)
-        .append($("<span></span>").css("background", "url(assets/media/in" + EL_abr(EL_tag) + ".svg) no-repeat"));
+        .append($("<span></span>").css("background", "url(assets/media/in" + EL_abr(EL_tag) + ".svg) no-repeat"))
 
     return headerElement;
 }

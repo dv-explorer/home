@@ -154,7 +154,7 @@
 
   .card-deck > .trans-3d {
     max-width: 21.375rem;
-    padding-left: 0.5rem;
+    padding-left: auto;
     padding-right: auto;
   }
 }
@@ -521,6 +521,8 @@ input {
   padding-bottom: 0.25rem;
   padding-left: 1.5rem;
   padding-right: 0.5rem;
+
+  background-color: #9BC6F480;
 }
 
 .btn-primary-group-sm > .btn-block + .btn-block {

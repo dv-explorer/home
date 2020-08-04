@@ -258,7 +258,7 @@ function createNS(NS_doc) {
 function createEL(EL_doc, x) {
     var classStr = "btn-secondary-group" + panelLayout().replace(" list-group", "");
     var btnClassStr = " btn-block";
-    if(classStr.length === 0) {
+    if(classStr.length > 0) {
         btnClassStr = "";
     }
 
@@ -278,8 +278,7 @@ function createEL(EL_doc, x) {
                 .text(EL_tag)
                 .prepend($("<span></span>").css({
                     "background": "url(assets/media/" + EL_code + ".svg) no-repeat",
-                    "background-size": "cover",
-                    "background-position": "center"
+                    "background-size": "cover"
                 })));
             
             // document.styleSheets[0].addRule('.btn-secondary-group > .btn.' + EL_code + ':before', 'background-color: ' + 'url(assets\/media\/' + EL_code + '.svg) no-repeat');

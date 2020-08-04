@@ -39,26 +39,10 @@ function loadData(NS_doc, EL_doc, card_doc) {
 function setupInteraction() {
     console.log("Now binding interactions");
     // activate responsive responsive header + filter panel layout
-    $(window).resize(function() {
-        var classStr = panelLayout();
-        if(classStr.length < 5){
-            $("div.btn-primary-group").removeClass("btn-primary-group list-group").addClass("btn-primary-group-sm");
-            $("div.btn-secondary-group").removeClass("btn-secondary-group").addClass("btn-secondary-group-sm");
-            $("div.btn-secondary-group-sm > .btn").removeClass("btn-block");
-        } else {
-            $("div.btn-primary-group-sm").removeClass("btn-primary-group-sm").addClass("btn-primary-group" + classStr);
-            $("div.btn-secondary-group-sm").removeClass("btn-secondary-group-sm").addClass("btn-secondary-group" + classStr.replace(" list-group", ""));
-            $("div.btn-secondary-group > .btn").addClass("btn-block");
-        }
-    });
+    $(window).resize(panelLayout);
     $("header .title-bold").click(function () {
         if($(window).outerWidth() < 768) {
             $("#filter-panel").slideToggle(180);
-        }
-
-        if($(window).outerWidth() < 576) {
-            $(".img-overlay").off("hover", "**" );
-            $(".img-overlay").tooltip("disable");
         }
     });
 
@@ -140,7 +124,7 @@ function setupInteraction() {
     echo.init({
         offset: 0,
         throttle: 250,
-        unload: true,
+        unload: false,
         callback: function(element, op) {
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
             if(op === 'load' && status === "back") {
@@ -154,8 +138,9 @@ function setupInteraction() {
                 return;
             }
             
-            if(op === 'unload'){
+            if(op === 'unload' && status === "back"){
                 element.src = "assets/media/fail_loading.svg";
+                $($(element).next()[0]).tooltip("disable");
             }
         }
     });
@@ -196,11 +181,11 @@ function setupInteraction() {
 
 // create NS components & display NS frame
 function createNS(NS_doc) {
-    // calc panel's position $ screen width measuring
-    var classStr = "btn-primary-group" + panelLayout();
+    // calc panel's position
+    panelLayout();
 
     // create NS part
-    var NS_Group = $("<div></div>").addClass(classStr)
+    var NS_Group = $("<div></div>").addClass("btn-primary-group list-group")
         .attr("id", "display-scroll");
     $.ajaxSettings.async = false;
     $.getJSON(NS_doc, function (json) {
@@ -256,31 +241,21 @@ function createNS(NS_doc) {
 // x < 0 :not(.active)
 // x == 0 .disabled
 function createEL(EL_doc, x) {
-    var classStr = "btn-secondary-group" + panelLayout().replace(" list-group", "");
-    var btnClassStr = " btn-block";
-    if(classStr.length === 0) {
-        btnClassStr = "";
-    }
-
     // EL_doc = EL_doc || [{"EL_id":"4", "EL_tag":"Editorial Layer"}];
     x = x || 1;
 
     $.ajaxSettings.async = false;
     $.getJSON(EL_doc, function(json) {
         // create EL components
-        var EL_Group = $("<div></div>").addClass(classStr);
+        var EL_Group = $("<div></div>").addClass("btn-secondary-group");
         $.each(json, function(i, item) {
             let EL_tag = item.EL_tag;
             let EL_code = EL_abr(item.EL_tag);
 
-            EL_Group.append($("<button></button>").addClass("btn text-left" + btnClassStr)
+            EL_Group.append($("<button></button>").addClass("btn btn-block text-left")
                 .addClass(EL_code)
                 .text(EL_tag)
-                .prepend($("<span></span>").css({
-                    "background": "url(assets/media/" + EL_code + ".svg) no-repeat",
-                    "background-size": "cover",
-                    "background-position": "center"
-                })));
+                .prepend($("<span></span>").css("background", "url(assets/media/" + EL_code + ".svg) no-repeat")));
             
             // document.styleSheets[0].addRule('.btn-secondary-group > .btn.' + EL_code + ':before', 'background-color: ' + 'url(assets\/media\/' + EL_code + '.svg) no-repeat');
             // document.styleSheets[0].addRule('.' + EL_code + ' .card-header > p:before', 'background-color: url(assets/media/in' + EL_code + '.svg) no-repeat');
@@ -399,7 +374,7 @@ function drawCardHeader(ds_tag, EL_tag, card_color) {
     headerElement.append(headTitle)
         .append(headP)
         .css("background", card_color)
-        .append($("<span></span>").css("background", "url(assets/media/in" + EL_abr(EL_tag) + ".svg) no-repeat"));
+        .append($("<span></span>").css("background", "url(assets/media/in" + EL_abr(EL_tag) + ".svg) no-repeat"))
 
     return headerElement;
 }
@@ -646,10 +621,8 @@ function panelLayout() {
     });
     if($(window).outerWidth() >= 768) {
         panel.css("height", ($(window).outerHeight() - bannerHeight));
-        return " list-group";
     } else {
         panel.css("height", "100%");
-        return "-sm";
     }
 }
 

@@ -41,14 +41,13 @@ function setupInteraction() {
     // activate responsive responsive header + filter panel layout
     $(window).resize(function() {
         var classStr = panelLayout();
+        console.log(classStr);
         if(classStr.length < 5){
-            $("div.btn-primary-group").removeClass("btn-primary-group list-group").addClass("btn-primary-group-sm");
-            $("div.btn-secondary-group").removeClass("btn-secondary-group").addClass("btn-secondary-group-sm");
-            $("div.btn-secondary-group-sm > .btn").removeClass("btn-block");
+            $("div.btn-primary-group").removeClass("btn-primary-group list-group").addClass("btn-primary-group" + classStr);
+            $("div.btn-secondary-group").removeClass("btn-secondary-group").addClass("btn-secondary-group" + classStr.replace(" list-group", ""));
         } else {
-            $("div.btn-primary-group-sm").removeClass("btn-primary-group-sm").addClass("btn-primary-group" + classStr);
-            $("div.btn-secondary-group-sm").removeClass("btn-secondary-group-sm").addClass("btn-secondary-group" + classStr.replace(" list-group", ""));
-            $("div.btn-secondary-group > .btn").addClass("btn-block");
+            $("div.btn-primary-group").removeClass("btn-primary-group-sm").addClass("btn-primary-group" + classStr);
+            $("div.btn-secondary-group").removeClass("btn-secondary-group-sm").addClass("btn-secondary-group" + classStr.replace(" list-group", ""));
         }
     });
     $("header .title-bold").click(function () {
@@ -257,10 +256,6 @@ function createNS(NS_doc) {
 // x == 0 .disabled
 function createEL(EL_doc, x) {
     var classStr = "btn-secondary-group" + panelLayout().replace(" list-group", "");
-    var btnClassStr = " btn-block";
-    if(classStr.length === 0) {
-        btnClassStr = "";
-    }
 
     // EL_doc = EL_doc || [{"EL_id":"4", "EL_tag":"Editorial Layer"}];
     x = x || 1;
@@ -273,14 +268,10 @@ function createEL(EL_doc, x) {
             let EL_tag = item.EL_tag;
             let EL_code = EL_abr(item.EL_tag);
 
-            EL_Group.append($("<button></button>").addClass("btn text-left" + btnClassStr)
+            EL_Group.append($("<button></button>").addClass("btn btn-block text-left")
                 .addClass(EL_code)
                 .text(EL_tag)
-                .prepend($("<span></span>").css({
-                    "background": "url(assets/media/" + EL_code + ".svg) no-repeat",
-                    "background-size": "cover",
-                    "background-position": "center"
-                })));
+                .prepend($("<span></span>").css("background", "url(assets/media/" + EL_code + ".svg) no-repeat")));
             
             // document.styleSheets[0].addRule('.btn-secondary-group > .btn.' + EL_code + ':before', 'background-color: ' + 'url(assets\/media\/' + EL_code + '.svg) no-repeat');
             // document.styleSheets[0].addRule('.' + EL_code + ' .card-header > p:before', 'background-color: url(assets/media/in' + EL_code + '.svg) no-repeat');
@@ -399,7 +390,7 @@ function drawCardHeader(ds_tag, EL_tag, card_color) {
     headerElement.append(headTitle)
         .append(headP)
         .css("background", card_color)
-        .append($("<span></span>").css("background", "url(assets/media/in" + EL_abr(EL_tag) + ".svg) no-repeat"));
+        .append($("<span></span>").css("background", "url(assets/media/in" + EL_abr(EL_tag) + ".svg) no-repeat"))
 
     return headerElement;
 }

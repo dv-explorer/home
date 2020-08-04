@@ -258,7 +258,7 @@ function createNS(NS_doc) {
 function createEL(EL_doc, x) {
     var classStr = "btn-secondary-group" + panelLayout().replace(" list-group", "");
     var btnClassStr = " btn-block";
-    if(classStr.length === 0) {
+    if(classStr.length > 0) {
         btnClassStr = "";
     }
 
