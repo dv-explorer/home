@@ -72,7 +72,6 @@ function setupInteraction() {
 
     // activate NS navigator
     $(".btn-primary-group > .btn").click(NS_scroller);
-    $(".btn-primary-group-sm > .btn").click(NS_scroller);
 
     // activate scroll spy
     $(window).scroll(displaySpy);
@@ -295,7 +294,6 @@ function createEL(EL_doc, x, classStr) {
         // check NS situation
         if(x > 0) {
             $(".btn-secondary-group > .btn").addClass("active");
-            $(".btn-secondary-group-sm > .btn").addClass("active");
         }
     });
 }
@@ -531,7 +529,7 @@ function scrollCheck(x) {
 
 // avoid NS .disabled.active
 function NS_active_fitting() {
-    var targetSet = $(".btn-primary-group").find(".disabled.active") || $(".btn-primary-group-sm").find(".disabled.active");
+    var targetSet = $(".btn-primary-group").find(".disabled.active");
     // length only equals 1 / 0
     if(targetSet.length > 0) {
         $(targetSet[0]).removeClass("active");
@@ -550,7 +548,6 @@ function NS_active_fitting() {
         } else {
         // $("#card-display").text("Sorry, you haven't chosen any Editorial Layers yet~");
             $(".btn-primary-group > .btn").removeClass("active");
-            $(".btn-primary-group-sm > .btn").removeClass("active");
         }
     }
 }
@@ -590,11 +587,9 @@ function displaySpy() {
     var screenH = $(window).height() - $("#card-display").offset().top; // if screen height is very limited - > bug $("#card-display").outerHeight() + $("#card-display").height();
     $("#card-display > div").each(function(i, item){
     var currentPosition = $(item).position().top - $(window).scrollTop();
-        if($("." + $(item).attr("id")).is(":not(.active)") && (currentPosition < 0.5*screenH) && (($(item).height() + currentPosition) >= 0.5*screenH)) {
+        if((currentPosition < 0.5*screenH) && (($(item).height() + currentPosition) >= 0.5*screenH)) {
             $(".btn-primary-group > .btn.active").removeClass("active");
             $(".btn-primary-group > .btn:not(.disabled)." + $(item).attr("id")).addClass("active");
-            $(".btn-primary-group-sm > .btn.active").removeClass("active");
-            $(".btn-primary-group-sm > .btn:not(.disabled)." + $(item).attr("id")).addClass("active");
         }
     });
 }

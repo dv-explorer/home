@@ -521,8 +521,7 @@ input {
 .btn-primary-group > .btn:hover, 
 .btn-primary-group > .btn:focus,
 .btn-primary-group > .btn:active,
-.btn-primary-group-sm > .btn:active
-.btn-primary-group-sm > .btn.active {
+.btn-primary-group-sm > .btn:active {
   background-color: #9BC6F480;
 }
 

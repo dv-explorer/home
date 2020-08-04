@@ -417,9 +417,7 @@ input {
 }
 
 .btn-primary-group > .btn:active,
-.btn-primary-group > .btn.active,
-.btn-primary-group-sm > .btn:active,
-.btn-primary-group-sm > .btn.active {
+.btn-primary-group > .btn.active {
   background: #9BC6F480 0% 0% no-repeat padding-box;
 }
 
@@ -428,9 +426,7 @@ input {
 /* .btn-secondary-group > .btn:focus:active, */
 .btn-secondary-group > .btn.active,
 .btn-secondary-group > .btn:active,
-.btn-secondary-group > .btn:hover,
-.btn-secondary-group-sm > .btn.active,
-.btn-secondary-group-sm > .btn:active {
+.btn-secondary-group > .btn:hover {
   background: #D6E5F5 0% 0% no-repeat padding-box;
   border: 0.0625rem solid #D6E5F5;
   color: #333333;
@@ -454,8 +450,8 @@ input {
   position: relative;
   width: 13px;
   height: 13px;
-  left: -0.25rem;
-  top: 0.125rem;
+  left: 0.1rem;
+  top: 0rem;
 }
 
 /* Sweep from Right */
@@ -508,21 +504,12 @@ input {
   transition-property: color, background-color;
 }
 
-.btn-primary-group-sm > .btn {
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.15s;
-  transition-duration: 0.15s;
-  -webkit-transition-property: color, background-color;
-  transition-property: color, background-color;
-}
-
 .btn-primary-group > .btn:hover, 
 .btn-primary-group > .btn:focus,
-.btn-primary-group > .btn:active,
-.btn-primary-group-sm > .btn:active
-.btn-primary-group-sm > .btn.active {
+.btn-primary-group > .btn:active
+.btn-primary-group-sm > .btn:hover, 
+.btn-primary-group-sm > .btn:focus,
+.btn-primary-group-sm > .btn:active {
   background-color: #9BC6F480;
 }
 
@@ -542,9 +529,6 @@ input {
 
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-}
-
-.btn-primary-group-sm > .btn {
   padding-left: 1.5rem;
   padding-right: 0.5rem;
 }
@@ -557,11 +541,6 @@ input {
 .btn-secondary-group-sm > .btn {
   margin-top: 0.25rem;
   margin-right: 0.25rem;
-
-  padding-left: 0.625rem;
-  padding-right: 0.375rem;
-
-  letter-spacing: -0.035rem;
 }
 
 .btn-secondary-group-sm {

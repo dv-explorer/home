@@ -428,9 +428,7 @@ input {
 /* .btn-secondary-group > .btn:focus:active, */
 .btn-secondary-group > .btn.active,
 .btn-secondary-group > .btn:active,
-.btn-secondary-group > .btn:hover,
-.btn-secondary-group-sm > .btn.active,
-.btn-secondary-group-sm > .btn:active {
+.btn-secondary-group > .btn:hover {
   background: #D6E5F5 0% 0% no-repeat padding-box;
   border: 0.0625rem solid #D6E5F5;
   color: #333333;
@@ -512,6 +510,7 @@ input {
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  overflow: hidden;
   -webkit-transition-duration: 0.15s;
   transition-duration: 0.15s;
   -webkit-transition-property: color, background-color;
@@ -520,9 +519,10 @@ input {
 
 .btn-primary-group > .btn:hover, 
 .btn-primary-group > .btn:focus,
-.btn-primary-group > .btn:active,
-.btn-primary-group-sm > .btn:active
-.btn-primary-group-sm > .btn.active {
+.btn-primary-group > .btn:active
+.btn-primary-group-sm > .btn:hover, 
+.btn-primary-group-sm > .btn:focus,
+.btn-primary-group-sm > .btn:active {
   background-color: #9BC6F480;
 }
 

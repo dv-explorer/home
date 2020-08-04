@@ -45,11 +45,11 @@ function setupInteraction() {
         if(classStr.length < 5){
             $("div.btn-primary-group").removeClass("btn-primary-group list-group").addClass("btn-primary-group-sm");
             $("div.btn-secondary-group").removeClass("btn-secondary-group").addClass("btn-secondary-group-sm");
-            $("div.btn-secondary-group-sm > .btn").removeClass("btn-block text-left").addClass("text-center");
+            $("div.btn-secondary-group-sm > .btn").removeClass("btn-block");
         } else {
             $("div.btn-primary-group-sm").removeClass("btn-primary-group-sm").addClass("btn-primary-group" + classStr);
             $("div.btn-secondary-group-sm").removeClass("btn-secondary-group-sm").addClass("btn-secondary-group" + classStr.replace(" list-group", ""));
-            $("div.btn-secondary-group > .btn").removeClass("text-center").addClass("btn-block text-left");
+            $("div.btn-secondary-group > .btn").addClass("btn-block");
         }
     });
     $("header .title-bold").click(function () {
@@ -72,17 +72,14 @@ function setupInteraction() {
 
     // activate NS navigator
     $(".btn-primary-group > .btn").click(NS_scroller);
-    $(".btn-primary-group-sm > .btn").click(NS_scroller);
 
     // activate scroll spy
     $(window).scroll(displaySpy);
     //activate the first part
     $(".btn-primary-group > .btn").first().trigger("click"); 
-    $(".btn-primary-group-sm > .btn").first().trigger("click");
 
     // activate EL filter button group
-    $(".btn-secondary-group > .btn").click(EL_filter);
-    $(".btn-secondary-group-sm > .btn").click(EL_filter);
+    $(".btn-secondary-group .btn").click(EL_filter);
 
     // image lazy loading
     // $(".modal-body").ImgLoading({timeout: 1000});
@@ -261,9 +258,10 @@ function createNS(NS_doc, classStr) {
 // x == 0 .disabled
 function createEL(EL_doc, x, classStr) {
     classStr = "btn-secondary-group" + classStr.replace(" list-group", "");
-    var btnClassStr = " text-left btn-block";
-    if(classStr.indexOf("sm") > 0) {
-        btnClassStr = " text-center";
+    var btnClassStr = " btn-block";
+    if(classStr.indexOf("sm")) {
+        btnClassStr = "";
+        console.log("small screen");
     }
 
     // EL_doc = EL_doc || [{"EL_id":"4", "EL_tag":"Editorial Layer"}];
@@ -277,15 +275,14 @@ function createEL(EL_doc, x, classStr) {
             let EL_tag = item.EL_tag;
             let EL_code = EL_abr(item.EL_tag);
 
-            EL_Group.append($("<button></button>").addClass("btn" + btnClassStr)
+            EL_Group.append($("<button></button>").addClass("btn text-left" + btnClassStr)
                 .addClass(EL_code)
                 .text(EL_tag)
                 .prepend($("<span></span>").css({
                     "background": "url(assets/media/" + EL_code + ".svg) no-repeat",
-                    // "background-size": "cover",
-                    // "background-position": "center"
-                }))
-            );
+                    "background-size": "cover",
+                    "background-position": "center"
+                })));
             
             // document.styleSheets[0].addRule('.btn-secondary-group > .btn.' + EL_code + ':before', 'background-color: ' + 'url(assets\/media\/' + EL_code + '.svg) no-repeat');
             // document.styleSheets[0].addRule('.' + EL_code + ' .card-header > p:before', 'background-color: url(assets/media/in' + EL_code + '.svg) no-repeat');
@@ -295,7 +292,6 @@ function createEL(EL_doc, x, classStr) {
         // check NS situation
         if(x > 0) {
             $(".btn-secondary-group > .btn").addClass("active");
-            $(".btn-secondary-group-sm > .btn").addClass("active");
         }
     });
 }
@@ -531,7 +527,7 @@ function scrollCheck(x) {
 
 // avoid NS .disabled.active
 function NS_active_fitting() {
-    var targetSet = $(".btn-primary-group").find(".disabled.active") || $(".btn-primary-group-sm").find(".disabled.active");
+    var targetSet = $(".btn-primary-group").find(".disabled.active");
     // length only equals 1 / 0
     if(targetSet.length > 0) {
         $(targetSet[0]).removeClass("active");
@@ -550,7 +546,6 @@ function NS_active_fitting() {
         } else {
         // $("#card-display").text("Sorry, you haven't chosen any Editorial Layers yet~");
             $(".btn-primary-group > .btn").removeClass("active");
-            $(".btn-primary-group-sm > .btn").removeClass("active");
         }
     }
 }
@@ -590,11 +585,9 @@ function displaySpy() {
     var screenH = $(window).height() - $("#card-display").offset().top; // if screen height is very limited - > bug $("#card-display").outerHeight() + $("#card-display").height();
     $("#card-display > div").each(function(i, item){
     var currentPosition = $(item).position().top - $(window).scrollTop();
-        if($("." + $(item).attr("id")).is(":not(.active)") && (currentPosition < 0.5*screenH) && (($(item).height() + currentPosition) >= 0.5*screenH)) {
+        if((currentPosition < 0.5*screenH) && (($(item).height() + currentPosition) >= 0.5*screenH)) {
             $(".btn-primary-group > .btn.active").removeClass("active");
             $(".btn-primary-group > .btn:not(.disabled)." + $(item).attr("id")).addClass("active");
-            $(".btn-primary-group-sm > .btn.active").removeClass("active");
-            $(".btn-primary-group-sm > .btn:not(.disabled)." + $(item).attr("id")).addClass("active");
         }
     });
 }

@@ -590,12 +590,15 @@ function displaySpy() {
     var screenH = $(window).height() - $("#card-display").offset().top; // if screen height is very limited - > bug $("#card-display").outerHeight() + $("#card-display").height();
     $("#card-display > div").each(function(i, item){
     var currentPosition = $(item).position().top - $(window).scrollTop();
-        if($("." + $(item).attr("id")).is(":not(.active)") && (currentPosition < 0.5*screenH) && (($(item).height() + currentPosition) >= 0.5*screenH)) {
+        if((currentPosition < 0.5*screenH) && (($(item).height() + currentPosition) >= 0.5*screenH)) {
             $(".btn-primary-group > .btn.active").removeClass("active");
             $(".btn-primary-group > .btn:not(.disabled)." + $(item).attr("id")).addClass("active");
             $(".btn-primary-group-sm > .btn.active").removeClass("active");
             $(".btn-primary-group-sm > .btn:not(.disabled)." + $(item).attr("id")).addClass("active");
+
+            // $('.btn-primary-group-sm').animate({scrollLeft: $(item).offset().left}, 500, "easeInOutQuart");
         }
+        // ".btn-primary-group-sm > .active"
     });
 }
 

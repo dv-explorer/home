@@ -591,10 +591,15 @@ function displaySpy() {
     $("#card-display > div").each(function(i, item){
     var currentPosition = $(item).position().top - $(window).scrollTop();
         if($("." + $(item).attr("id")).is(":not(.active)") && (currentPosition < 0.5*screenH) && (($(item).height() + currentPosition) >= 0.5*screenH)) {
+            console.log($(item).attr("id"));
             $(".btn-primary-group > .btn.active").removeClass("active");
             $(".btn-primary-group > .btn:not(.disabled)." + $(item).attr("id")).addClass("active");
             $(".btn-primary-group-sm > .btn.active").removeClass("active");
             $(".btn-primary-group-sm > .btn:not(.disabled)." + $(item).attr("id")).addClass("active");
+
+            // var targetId = $(this).attr("id");
+            // var target = $(targetId).position().top + $("#card-display").height() - $("#card-display").outerHeight();
+            $(".btn-primary-group-sm").animate({scrollLeft: ($("." + $(item).attr("id")).position().left)});
         }
     });
 }
