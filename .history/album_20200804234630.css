@@ -161,10 +161,6 @@
   .modal-content {
     max-width: 100%;
   }
-
-  .modal-body > img{
-    width: 100%;
-  }
 }
 
 * {

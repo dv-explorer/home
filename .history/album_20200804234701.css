@@ -162,7 +162,7 @@
     max-width: 100%;
   }
 
-  .modal-body > img{
+  .modal-body{
     width: 100%;
   }
 }

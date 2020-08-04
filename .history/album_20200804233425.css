@@ -158,12 +158,8 @@
     padding-right: auto;
   }
 
-  .modal-content {
+  .modal-dialog {
     max-width: 100%;
-  }
-
-  .modal-body > img{
-    width: 100%;
   }
 }
 
@@ -867,7 +863,7 @@ input {
 
 .modal-body {
   padding: 0;
-  max-height: 20.75rem;
+  height: 20.75rem;
   background-repeat: no-repeat;
   background-position: center;
 }
