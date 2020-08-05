@@ -37,7 +37,7 @@
 @media (max-width: 767px){
 
   #filter-panel {
-    padding-bottom: 0.125rem;
+    padding-bottom: 0.625rem;
     padding-top: 0.625rem;
   }
 
@@ -592,7 +592,6 @@ background: #D6E5F5 0% 0% no-repeat padding-box;
   display: flex;
   /* flex-wrap: wrap; */
   overflow-x: auto;
-  padding-bottom: 0.5rem;
 }
 
 .btn-secondary-group-sm > .btn {
