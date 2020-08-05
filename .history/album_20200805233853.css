@@ -450,7 +450,7 @@ background: #D6E5F5 0% 0% no-repeat padding-box;
 /* .btn-secondary-group > .btn:focus:active, */
 .btn-secondary-group > .btn.active,
 .btn-secondary-group > .btn:active,
-/* .btn-secondary-group > .btn:hover, */
+.btn-secondary-group > .btn:hover,
 .btn-secondary-group-sm > .btn.active,
 .btn-secondary-group-sm > .btn:active {
   background: #D6E5F5 0% 0% no-repeat padding-box;
@@ -458,10 +458,10 @@ background: #D6E5F5 0% 0% no-repeat padding-box;
   color: #333333;
 }
 
-/* .btn-secondary-group > .btn:not(.active):hover {
+.btn-secondary-group > .btn:not(.active):hover {
   background-color: rgb(214, 229, 245, 0.4);
   border-color:  rgb(214, 229, 245, 0.4);
-} */
+}
 
 .btn-secondary-group > .btn span {
   content: "";
