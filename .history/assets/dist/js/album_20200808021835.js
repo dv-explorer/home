@@ -604,11 +604,11 @@ function displaySpy() {
 
 function searchFunc() {
     var show_list = new Array();
-    console.log("Ready to search.");
+    console.log("1 - ready to search."); //1
     var read = $("input.form-control").val().toString() || "";
     read = read.replace(/[.,:;·'"\(\)\[\]\{\}\\\/\|]/g, " ").replace(/\s+/g, " ");
     read = $.each((read.split(" ")), function(item){return $.trim(item);});
-    console.log(read);
+    console.log("2 - ", read); //2
 
     if(read.length > 0 && (read[0] != ("" | " "))) {
 
@@ -624,22 +624,37 @@ function searchFunc() {
                 delete item.eg_url;
                 var num = item.card_id;
                 item = (Object.values(item)).join(" ");
-                if(item.search(rex) >= 0) {show_list.push(num);}
-                if(i == 42) {console.log("Search finished");}
+                if(item.search(rex) >= 0) {
+                    show_list.push(num);
+                    // var thisId = $($('[name=\"card_' + num + '\"]').parentsUntil("#card-display")[1]).attr("id");
+                    // $("#" + thisId).show("fast");
+                    // $("." + thisId).removeClass("disabled");
+                    // $('[name=\"card_' + num + '\"]').show("fast");
+                // } else {
+                //     $('[name=\"card_' + num + '\"]').hide("fast");
+                }
+
+                if(i == 42) {console.log("3 - each finished");} //3
             });
 
-        }).done(function() {
+            // var a = $("#cohering > .card-deck").children(".trans-3d:visible").length;
+            // console.log("4 - search finished " + a);
+
+            console.log("4,5 - ", show_list); //4-5
+
+        }).done(function(){
             deckDisplay(show_list);
+            scrollToTop();
         });
 
     } else {
         $(".card-deck > div").show("slow");
-        $("#card-display > div").slideDown("fast");
-        $(".btn-primary-group > .btn").removeClass("disabled");
-        $(".btn-primary-group-sm > .btn").removeClass("disabled");
+        setTimeout("deckDisplay([])", 300);
+        scrollToTop();
     }
 
-    scrollToTop();
+    // setTimeout("deckDisplay(show_list)", 300);
+    // scrollToTop();
 }
 
 // set filter panel
@@ -684,20 +699,18 @@ function deckDisplay(list) {
     //     }
     // });
 
-    $("#card-display > div").slideDown(1);
-    $(".trans-3d").hide(1);
+    $("#card-display > div").slideDown("fast");
+    $(".trans-3d").hide("fast");
     $.map(list, function(num) {
         $("[name=\'card_" + num + "\']").show("fast"); 
+        console.log("card_" + num)
     });
     $("#card-display > div").each(function(i, part) {
         if($(part).find(".trans-3d:visible").length == 0) {
             $(part).slideUp("fast");
-            $("." + $(part).attr("id") + ":not(disabled)").addClass("disabled");
-        } else {
-            $("." + $(part).attr("id")).removeClass("disabled");
+            console.log("slideup.");
         }
     });
-
 }
 
 

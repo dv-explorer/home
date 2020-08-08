@@ -159,7 +159,7 @@ function setupInteraction() {
             }
             
             if(op === 'unload') {
-                element.src = "assets/media/fail_loading_light.svg";
+                element.src = "assets/media/fail_loading.svg";
             }
         }
     });
@@ -354,9 +354,9 @@ function drawCardFront(card_id, card_color, ds_tag, EL_tag, url, front_info) {
     var card_header = drawCardHeader(ds_tag, EL_tag, card_color);
     var frontGif = $("<img />").addClass("card-img")
         .attr({
-            src: "assets/media/loading_light.svg",
+            src: "assets/media/loading.svg",
             "data-echo": "assets/front_gif/front_" + card_id + ".gif",
-            "onerror": "assets/media/fail_loading_light.svg"
+            "onerror": "assets/media/fail_loading.svg"
         });
     // var frontGif = $("<img />").attr("src", "assets/media/front_" + card_id + ".gif").addClass("card-img");
 
@@ -373,9 +373,9 @@ function drawCardBack(card_id, card_color, ds_tag, EL_tag, url, back_caption) {
     var card_header = drawCardHeader(ds_tag, EL_tag, card_color);
     var back_gif = $("<img />").addClass("card-img")
         .attr({
-            src: "assets/media/loading_light.svg",
+            src: "assets/media/loading.svg",
             "data-echo": "assets/back_gif_compressed/back_" + card_id + ".gif",
-            "onerror": "assets/media/fail_loading_light.svg"
+            "onerror": "assets/media/fail_loading.svg"
         });
     var backGif = $("<div></div>").addClass("card-img-box")
         .css("position", "relative")
@@ -406,7 +406,7 @@ function drawCardHeader(ds_tag, EL_tag, card_color) {
         .append(headP)
         .css("background", card_color)
         .append($("<span></span>").css({
-            background: "url(assets/media/in" + EL_abr(EL_tag) + ".svg) no-repeat",
+            "background": "url(assets/media/in" + EL_abr(EL_tag) + ".svg) no-repeat",
             "background-size": "cover"
         }));
 
@@ -603,8 +603,7 @@ function displaySpy() {
 }
 
 function searchFunc() {
-    var show_list = new Array();
-    console.log("Ready to search.");
+    console.log("ready to search.");
     var read = $("input.form-control").val().toString() || "";
     read = read.replace(/[.,:;·'"\(\)\[\]\{\}\\\/\|]/g, " ").replace(/\s+/g, " ");
     read = $.each((read.split(" ")), function(item){return $.trim(item);});
@@ -614,31 +613,36 @@ function searchFunc() {
 
         //transform string to regexExp
         var rex = new RegExp(read.join("|"), "ig");
-        // var show_list = [];
-        // $.ajaxSettings.async = false;
+        var show_list = [];
+        $.ajaxSettings.async = false;
         $.getJSON(card_doc, function(json) {
 
             //get to-be-hidden number array
-            // $.ajaxSettings.async = false;
+            $.ajaxSettings.async = false;
             $.each(json, function(i, item) {
                 delete item.eg_url;
                 var num = item.card_id;
                 item = (Object.values(item)).join(" ");
-                if(item.search(rex) >= 0) {show_list.push(num);}
-                if(i == 42) {console.log("Search finished");}
+                if(item.search(rex) >= 0) {
+                    show_list.push(num);
+                    $('[name=\"card_' + num + '\"]').show("fast");
+                } else {
+                    $('[name=\"card_' + num + '\"]').hide("fast");
+                }
+
+                if(i == 42) {console.log("each finished");}
             });
 
-        }).done(function() {
-            deckDisplay(show_list);
+            var a = $("#emphasis > .card-deck").children(".trans-3d:visible").length;
+            console.log("search finished " + a);
+
         });
 
     } else {
         $(".card-deck > div").show("slow");
-        $("#card-display > div").slideDown("fast");
-        $(".btn-primary-group > .btn").removeClass("disabled");
-        $(".btn-primary-group-sm > .btn").removeClass("disabled");
     }
 
+    // deckDisplay();
     scrollToTop();
 }
 
@@ -662,42 +666,24 @@ function panelLayout() {
 }
 
 // check NS - Card display relationship
-function deckDisplay(list) {
-    list = list || [];
-    // $("#card-display > div").each(function(i, part) {
-    //     var cardDeck = $(part).find(".card-deck")[0];
-    //     console.log("5 - " + $(part).attr("id") + " " + $(cardDeck).find(".trans-3d:visible").length);
-    //     console.log("6 - ", ($(cardDeck).find(".trans-3d:visible").length == 0) && $(part).is(":visible"));
-    //     if(($(cardDeck).children(".trans-3d:visible").length == 0) && $(part).is(":visible")) {
-    //         console.log("7 - " + $(part).attr("id") + " was hidden.");
-    //         $(part).slideUp("fast");
-    //         $("." + $(part).attr("id")).removeClass("active").addClass("disabled");
-    //         return ;
-    //     }
-        
-    //     console.log("8 - ", ($(cardDeck).find(".trans-3d:visible").length > 0) && $(part).is(":hidden"));
-    //     if(($(cardDeck).find(".trans-3d:visible").length > 0) && $(part).is(":hidden")) {
-    //         console.log("9 - " + $(part).attr("id") + " was shown.");
-    //         $(part).slideDown();
-    //         $("." + $(part).attr("id")).removeClass("disabled");
-    //         return ;
-    //     }
-    // });
-
-    $("#card-display > div").slideDown(1);
-    $(".trans-3d").hide(1);
-    $.map(list, function(num) {
-        $("[name=\'card_" + num + "\']").show("fast"); 
-    });
+function deckDisplay() {
     $("#card-display > div").each(function(i, part) {
-        if($(part).find(".trans-3d:visible").length == 0) {
+        var cardDeck = $(part).find(".card-deck")[0];
+        console.log($(part).attr("id") + $(cardDeck).children(".trans-3d:visible").length);
+        if(($(cardDeck).children(".trans-3d:visible") == 0) && $(part).is(":visible")) {
+            console.log($(part).attr("id") + " was hidden.");
             $(part).slideUp("fast");
-            $("." + $(part).attr("id") + ":not(disabled)").addClass("disabled");
-        } else {
+            $("." + $(part).attr("id")).removeClass("active").addClass("disabled");
+            return ;
+        }
+        
+        if(($(cardDeck).children("[display='block']").length > 0) && $(part).is(":hidden")) {
+            console.log($(part).attr("id") + " was shown.");
+            $(part).slideDown();
             $("." + $(part).attr("id")).removeClass("disabled");
+            return ;
         }
     });
-
 }
 
 
@@ -728,9 +714,9 @@ function modalInfo() {
     $(".modal-title").text(modalTitle).attr("href", modalURL);
     // $(".modal-header > span").text(modalSource);
     $(".modal-body > img").attr({
-        src: "assets/media/loading_light.svg",
+        src: "assets/media/loading.svg",
         "data-echo": "assets/back_gif/back_" + modalNum + ".gif",
-        "onerror": "assets/media/fail_loading_light.svg"
+        "onerror": "assets/media/fail_loading.svg"
     });
 }
 

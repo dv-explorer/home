@@ -684,7 +684,7 @@ function deckDisplay(list) {
     //     }
     // });
 
-    $("#card-display > div").slideDown(1);
+    $("#card-display > div").slideDown(300);
     $(".trans-3d").hide(1);
     $.map(list, function(num) {
         $("[name=\'card_" + num + "\']").show("fast"); 
