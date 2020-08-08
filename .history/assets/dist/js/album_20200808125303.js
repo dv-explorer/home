@@ -149,18 +149,16 @@ function setupInteraction() {
         throttle: 250,
         unload: false,
         callback: function(element, op) {
-            var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
-
             if(op === 'load' && status === "front"){
-                console.log($(element).prev()[0]);
-                $($(element).prev()[0]).show(0);
-                $($(element).parent()[0]).hover(function(){
-                    $($(this).children(".card-frontPrev")[0]).fadeOut(10);
+                $($(element).prev(".card-frontPrev")[0]).show(160);
+                $($(element).parent(".card-frontImg")[0]).hover(function(){
+                    $($(this).prev()[0]).hide(160);
                 }, function() {
-                    $($(this).children(".card-frontPrev")[0]).fadeIn(160);
+                    $($(this).prev()[0]).show(160);
                 });
             }
 
+            var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
             if(op === 'load' && status === "back") {
                 $($(element).next()[0]).tooltip({title: "Click to zoom in", placement: "top"});
                 $($(element).parents(".card-img-box")[0]).hover(fullScreenOver, fullScreenOut);
@@ -404,8 +402,7 @@ function drawCardFront(card_id, card_color, ds_tag, EL_tag, url, front_info) {
         });
     // var frontGif = $("<img />").attr("src", "assets/media/front_" + card_id + ".gif").addClass("card-img");
     var prevImg = $("<img />").addClass("card-frontPrev")
-        .attr({src: "assets/front_gif_preview/front_" + card_id + ".png"})
-        .css("display", "none");
+        .attr({src: "assets/front_gif_preview/front_" + card_id + ".png"});
 
     var frontImg = $("<div></div>").addClass("card-frontImg").append(prevImg).append(frontGif);
 

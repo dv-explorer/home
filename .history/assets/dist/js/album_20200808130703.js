@@ -150,14 +150,14 @@ function setupInteraction() {
         unload: false,
         callback: function(element, op) {
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
-
+            
             if(op === 'load' && status === "front"){
                 console.log($(element).prev()[0]);
-                $($(element).prev()[0]).show(0);
-                $($(element).parent()[0]).hover(function(){
-                    $($(this).children(".card-frontPrev")[0]).fadeOut(10);
+                $($(element).prev()).show(160);
+                $($(element).parent()).hover(function(){
+                    $($(this).prev()).hide(160);
                 }, function() {
-                    $($(this).children(".card-frontPrev")[0]).fadeIn(160);
+                    $($(this).prev()).show(160);
                 });
             }
 

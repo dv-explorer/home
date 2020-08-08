@@ -95,9 +95,6 @@ function setupInteraction() {
         window.open($(this).attr("href"));
     });
 
-    // card footer url
-    $(".card-footer a").tooltip({title: "Click to watch full video in a new window", placement: "top"});
-
     // hover front gif 
     // image lazy loading
     // $(".card-img").load($(this).attr("data-target"), function() {
@@ -150,17 +147,6 @@ function setupInteraction() {
         unload: false,
         callback: function(element, op) {
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
-
-            if(op === 'load' && status === "front"){
-                console.log($(element).prev()[0]);
-                $($(element).prev()[0]).show(0);
-                $($(element).parent()[0]).hover(function(){
-                    $($(this).children(".card-frontPrev")[0]).fadeOut(10);
-                }, function() {
-                    $($(this).children(".card-frontPrev")[0]).fadeIn(160);
-                });
-            }
-
             if(op === 'load' && status === "back") {
                 $($(element).next()[0]).tooltip({title: "Click to zoom in", placement: "top"});
                 $($(element).parents(".card-img-box")[0]).hover(fullScreenOver, fullScreenOut);
@@ -202,7 +188,7 @@ function setupInteraction() {
                 show: true
             });
         });
-    $("a.modal-title").tooltip({title: "Click to watch full video in a new window", placement: "top"});
+    $("a.modal-title").tooltip({title: "Click to view example video", placement: "top"});
     $("a.modal-title").click(function(){
         window.open($(this).attr("href"));
         $("a.modal-title").tooltip("hide");
@@ -218,7 +204,6 @@ function setupInteraction() {
     if (window.Event) {document.captureEvents(Event.MOUSEUP); }
 
     function nocontextmenu() { 
-        console.log("here i am");
         event.cancelBubble = true 
         event.returnValue = false; 
 
@@ -236,10 +221,8 @@ function setupInteraction() {
         } 
     } 
 
-    // for IE5+ 
-    document.oncontextmenu = nocontextmenu; 
-    // for all others 
-    document.onmousedown = norightclick; 
+    document.oncontextmenu = nocontextmenu; // for IE5+ 
+    document.onmousedown = norightclick; // for all others 
 }
 
 // create NS components & display NS frame
@@ -404,16 +387,19 @@ function drawCardFront(card_id, card_color, ds_tag, EL_tag, url, front_info) {
         });
     // var frontGif = $("<img />").attr("src", "assets/media/front_" + card_id + ".gif").addClass("card-img");
     var prevImg = $("<img />").addClass("card-frontPrev")
-        .attr({src: "assets/front_gif_preview/front_" + card_id + ".png"})
-        .css("display", "none");
-
-    var frontImg = $("<div></div>").addClass("card-frontImg").append(prevImg).append(frontGif);
+        .css({
+            opacity: 0.5,
+            width: "100%",
+            // height:"100%",
+        })
+        .attr({
+            src: "assets/front_gif_preview/front_" + card_id + ".png"
+        });
 
     var card_body = drawCardBody(1, card_id, front_info);
     var card_footer = drawCardFooter(1, card_id, url);
 
-    // frontElem.append(card_header).append(prevImg).append(frontGif).append(card_body).append(card_footer);
-    frontElem.append(card_header).append(frontImg).append(card_body).append(card_footer);
+    frontElem.append(card_header).append(prevImg).append(frontGif).append(card_body).append(card_footer);
     return frontElem;
 }
 

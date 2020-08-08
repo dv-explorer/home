@@ -155,9 +155,9 @@ function setupInteraction() {
                 console.log($(element).prev()[0]);
                 $($(element).prev()[0]).show(0);
                 $($(element).parent()[0]).hover(function(){
-                    $($(this).children(".card-frontPrev")[0]).fadeOut(10);
+                    $($(this).children(".card-frontImg")[0]).fadeOut(300);
                 }, function() {
-                    $($(this).children(".card-frontPrev")[0]).fadeIn(160);
+                    $($(this).children(".card-frontImg")[0]).fadeIn(160);
                 });
             }
 

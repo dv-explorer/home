@@ -95,9 +95,6 @@ function setupInteraction() {
         window.open($(this).attr("href"));
     });
 
-    // card footer url
-    $(".card-footer a").tooltip({title: "Click to watch full video in a new window", placement: "top"});
-
     // hover front gif 
     // image lazy loading
     // $(".card-img").load($(this).attr("data-target"), function() {
@@ -150,17 +147,6 @@ function setupInteraction() {
         unload: false,
         callback: function(element, op) {
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
-
-            if(op === 'load' && status === "front"){
-                console.log($(element).prev()[0]);
-                $($(element).prev()[0]).show(0);
-                $($(element).parent()[0]).hover(function(){
-                    $($(this).children(".card-frontPrev")[0]).fadeOut(10);
-                }, function() {
-                    $($(this).children(".card-frontPrev")[0]).fadeIn(160);
-                });
-            }
-
             if(op === 'load' && status === "back") {
                 $($(element).next()[0]).tooltip({title: "Click to zoom in", placement: "top"});
                 $($(element).parents(".card-img-box")[0]).hover(fullScreenOver, fullScreenOut);
@@ -177,6 +163,8 @@ function setupInteraction() {
             }
         }
 
+        document.οncοntextmenu = new Function("event.returnValue=false"); 
+        document.onselectstart = new Function("event.returnValue=false"); 
     });
 
     // const logo = new Freezeframe('.front > .card-img');
@@ -191,7 +179,6 @@ function setupInteraction() {
     // $(".card-img-box").hover(fullScreenOver, fullScreenOut);
     // $(".img-overlay").tooltip({title: "Click to zoom in", placement: "top"});
 
-
     // toggle modal
     $(".img-overlay").click(modalInfo)
         .click(function () {
@@ -202,7 +189,7 @@ function setupInteraction() {
                 show: true
             });
         });
-    $("a.modal-title").tooltip({title: "Click to watch full video in a new window", placement: "top"});
+    $("a.modal-title").tooltip({title: "Click to view example video", placement: "top"});
     $("a.modal-title").click(function(){
         window.open($(this).attr("href"));
         $("a.modal-title").tooltip("hide");
@@ -212,34 +199,6 @@ function setupInteraction() {
         img.src = $(".modal-body > img").attr("data-echo");
         $(img).on("load", function(){$(".modal-body > img").replaceWith(img);});
     });
-
-
-    // abandon right mouse click.
-    if (window.Event) {document.captureEvents(Event.MOUSEUP); }
-
-    function nocontextmenu() { 
-        console.log("here i am");
-        event.cancelBubble = true 
-        event.returnValue = false; 
-
-        return false; 
-    } 
-
-    function norightclick(e) { 
-        if (window.Event) { 
-        if (e.which == 2 || e.which == 3) 
-            return false; 
-        } else if (event.button == 2 || event.button == 3) { 
-            event.cancelBubble = true 
-            event.returnValue = false; 
-            return false; 
-        } 
-    } 
-
-    // for IE5+ 
-    document.oncontextmenu = nocontextmenu; 
-    // for all others 
-    document.onmousedown = norightclick; 
 }
 
 // create NS components & display NS frame
@@ -403,17 +362,11 @@ function drawCardFront(card_id, card_color, ds_tag, EL_tag, url, front_info) {
             "onerror": "assets/media/fail_loading_light.svg"
         });
     // var frontGif = $("<img />").attr("src", "assets/media/front_" + card_id + ".gif").addClass("card-img");
-    var prevImg = $("<img />").addClass("card-frontPrev")
-        .attr({src: "assets/front_gif_preview/front_" + card_id + ".png"})
-        .css("display", "none");
-
-    var frontImg = $("<div></div>").addClass("card-frontImg").append(prevImg).append(frontGif);
 
     var card_body = drawCardBody(1, card_id, front_info);
     var card_footer = drawCardFooter(1, card_id, url);
 
-    // frontElem.append(card_header).append(prevImg).append(frontGif).append(card_body).append(card_footer);
-    frontElem.append(card_header).append(frontImg).append(card_body).append(card_footer);
+    frontElem.append(card_header).append(frontGif).append(card_body).append(card_footer);
     return frontElem;
 }
 

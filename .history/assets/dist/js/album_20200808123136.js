@@ -96,7 +96,7 @@ function setupInteraction() {
     });
 
     // card footer url
-    $(".card-footer a").tooltip({title: "Click to watch full video in a new window", placement: "top"});
+    $(".card-footer a").tooltip({title: "Click to watch this video", placement: "top"});
 
     // hover front gif 
     // image lazy loading
@@ -150,17 +150,6 @@ function setupInteraction() {
         unload: false,
         callback: function(element, op) {
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
-
-            if(op === 'load' && status === "front"){
-                console.log($(element).prev()[0]);
-                $($(element).prev()[0]).show(0);
-                $($(element).parent()[0]).hover(function(){
-                    $($(this).children(".card-frontPrev")[0]).fadeOut(10);
-                }, function() {
-                    $($(this).children(".card-frontPrev")[0]).fadeIn(160);
-                });
-            }
-
             if(op === 'load' && status === "back") {
                 $($(element).next()[0]).tooltip({title: "Click to zoom in", placement: "top"});
                 $($(element).parents(".card-img-box")[0]).hover(fullScreenOver, fullScreenOut);
@@ -202,7 +191,7 @@ function setupInteraction() {
                 show: true
             });
         });
-    $("a.modal-title").tooltip({title: "Click to watch full video in a new window", placement: "top"});
+    $("a.modal-title").tooltip({title: "Click to view example video", placement: "top"});
     $("a.modal-title").click(function(){
         window.open($(this).attr("href"));
         $("a.modal-title").tooltip("hide");
@@ -404,8 +393,7 @@ function drawCardFront(card_id, card_color, ds_tag, EL_tag, url, front_info) {
         });
     // var frontGif = $("<img />").attr("src", "assets/media/front_" + card_id + ".gif").addClass("card-img");
     var prevImg = $("<img />").addClass("card-frontPrev")
-        .attr({src: "assets/front_gif_preview/front_" + card_id + ".png"})
-        .css("display", "none");
+        .attr({src: "assets/front_gif_preview/front_" + card_id + ".png"});
 
     var frontImg = $("<div></div>").addClass("card-frontImg").append(prevImg).append(frontGif);
 

@@ -916,7 +916,3 @@ button.close:hover {
   opacity: 1;
   outline: none;
 }
-
-.tooltip-inner {
-  max-width: initial;
-}

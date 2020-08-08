@@ -618,10 +618,9 @@ background: #D6E5F5 0% 0% no-repeat padding-box;
 
 .card-deck .card-frontPrev {
   width: 100%;
-  opacity: 100%;
+  opacity: 38%;
   position: absolute;
   left: 0;
-  z-index: 800;
 }
 
 .back .img-overlay {
@@ -915,8 +914,4 @@ button.close:hover {
 .close:not(:disabled):not(.disabled):focus {
   opacity: 1;
   outline: none;
-}
-
-.tooltip-inner {
-  max-width: initial;
 }
