@@ -152,7 +152,7 @@ function setupInteraction() {
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
 
             if(op === 'load' && status === "front"){
-                $(element).prev(".card-frontPrev")[0].src = $($(element).prev(".card-frontPrev")[0]).attr("data-target");
+                $(element).prev(".card-frontPrev")[0].src = $(element).prev(".card-frontPrev")[0].data-target;
                 $($(element).parent()[0]).hover(function(){
                     $($(this).children(".card-frontPrev")[0]).fadeOut(10);
                 }, function() {

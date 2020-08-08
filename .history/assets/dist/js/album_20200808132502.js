@@ -152,7 +152,7 @@ function setupInteraction() {
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
 
             if(op === 'load' && status === "front"){
-                $(element).prev(".card-frontPrev")[0].src = $($(element).prev(".card-frontPrev")[0]).attr("data-target");
+                // $($(element).prev()[0]).show(0);
                 $($(element).parent()[0]).hover(function(){
                     $($(this).children(".card-frontPrev")[0]).fadeOut(10);
                 }, function() {
@@ -403,11 +403,8 @@ function drawCardFront(card_id, card_color, ds_tag, EL_tag, url, front_info) {
         });
     // var frontGif = $("<img />").attr("src", "assets/media/front_" + card_id + ".gif").addClass("card-img");
     var prevImg = $("<img />").addClass("card-frontPrev")
-        .attr({
-            src: "assets/media/loading_light.svg",
-            "data-target": "assets/front_gif_preview/front_" + card_id + ".png",
-            "onerror": "assets/media/fail_loading_light.svg"
-        });
+        .attr({src: "assets/front_gif_preview/front_" + card_id + ".png"})
+        .css("display", "none");
 
     var frontImg = $("<div></div>").addClass("card-frontImg").append(prevImg).append(frontGif);
 
