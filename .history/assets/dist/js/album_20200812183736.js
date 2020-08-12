@@ -762,7 +762,6 @@ function deckDisplay(list, idString) {
             $("." + $(part).attr("id")).removeClass("disabled");
         }
     });
-    $(".btn-primary-group a").removeClass("active");
     $(".btn-primary-group a:not(.disabled):first-child").addClass("active");
 
 }

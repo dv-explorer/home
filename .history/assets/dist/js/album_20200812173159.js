@@ -657,44 +657,44 @@ function searchFunc() {
     var show_list = new Array();
     console.log("Ready to search.");
     var read = $("input.form-control").val().toString() || "";
-    readReg = read.replace(/[.,:;·'"\(\)\[\]\{\}\\\/\|]/g, " ").replace(/\s+/g, " ");
-    readReg = $.each((readReg.split(" ")), function(item){return $.trim(item);});
+
+    // trigger NS button if name the same
+    if($($("#" + read.toLowerCase()).parent()[0]).attr("id") === "card-display") {
+        $("#card-display > div").not("#" + read.toLowerCase()).slideUp(160);
+        $("." + read.toLowerCase()).trigger("click");
+        setTimeout(function() {$("." + read.toLowerCase()).trigger("click");}, 300);
+        $(".btn-primary-group > ." + read.toLowerCase()).addClass("active");
+        $(".btn-primary-group > a").not("." + read.toLowerCase()).addClass("disabled");
+        $(".btn-primary-group-sm > a").not("." + read.toLowerCase()).addClass("disabled");
+        return;
+    }
+
+
+    read = read.replace(/[.,:;·'"\(\)\[\]\{\}\\\/\|]/g, " ").replace(/\s+/g, " ");
+    read = $.each((read.split(" ")), function(item){return $.trim(item);});
     console.log(read);
 
-    if(readReg.length > 0 && (readReg[0] != ("" | " "))) {
+    if(read.length > 0 && (read[0] != ("" | " "))) {
 
-        // trigger NS button if name the same
-        if(readReg.length === 1 && $($("#" + read.toLowerCase()).parent()[0]).attr("id") === "card-display") {
+        //transform string to regexExp
+        var rex = new RegExp(read.join("|"), "ig");
+        // var show_list = [];
+        // $.ajaxSettings.async = false;
+        $.getJSON(card_doc, function(json) {
 
-            $("#" + read.toLowerCase()).find(".trans-3d").each(function() {
-                var num = ($(this).attr("name")).substr(5); 
-                show_list.push(num);
-            });
-            deckDisplay(show_list, "#" + read.toLowerCase());
-            console.log("Search finished");
-            
-        } else {
-
-            //transform string to regexExp
-            var rex = new RegExp(readReg.join("|"), "ig");
-            // var show_list = [];
+            //get to-be-hidden number array
             // $.ajaxSettings.async = false;
-            $.getJSON(card_doc, function(json) {
-
-                //get to-be-hidden number array
-                // $.ajaxSettings.async = false;
-                $.each(json, function(i, item) {
-                    delete item.eg_url;
-                    var num = item.card_id;
-                    item = (Object.values(item)).join(" ");
-                    if(item.search(rex) >= 0) {show_list.push(num);}
-                    if(i == 42) {console.log("Search finished");}
-                });
-
-            }).done(function() {
-                deckDisplay(show_list);
+            $.each(json, function(i, item) {
+                delete item.eg_url;
+                var num = item.card_id;
+                item = (Object.values(item)).join(" ");
+                if(item.search(rex) >= 0) {show_list.push(num);}
+                if(i == 42) {console.log("Search finished");}
             });
-        }
+
+        }).done(function() {
+            deckDisplay(show_list);
+        });
 
     } else {
         $(".card-deck > div").show("slow");
@@ -726,8 +726,7 @@ function panelLayout() {
 }
 
 // check NS - Card display relationship
-function deckDisplay(list, idString) {
-    idString = idString || "";
+function deckDisplay(list) {
     list = list || [];
     // $("#card-display > div").each(function(i, part) {
     //     var cardDeck = $(part).find(".card-deck")[0];
@@ -752,7 +751,7 @@ function deckDisplay(list, idString) {
     $("#card-display > div").slideDown(1);
     $(".trans-3d").hide(1);
     $.map(list, function(num) {
-        $(idString + " [name=\'card_" + num + "\']").show("fast"); 
+        $("[name=\'card_" + num + "\']").show("fast"); 
     });
     $("#card-display > div").each(function(i, part) {
         if($(part).find(".trans-3d:visible").length == 0) {
@@ -762,8 +761,6 @@ function deckDisplay(list, idString) {
             $("." + $(part).attr("id")).removeClass("disabled");
         }
     });
-    $(".btn-primary-group a").removeClass("active");
-    $(".btn-primary-group a:not(.disabled):first-child").addClass("active");
 
 }
 
