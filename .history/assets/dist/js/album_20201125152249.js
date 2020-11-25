@@ -750,13 +750,11 @@ function deckDisplay(list, idString) {
     //     }
     // });
 
-    console.log("list: " + list);
-    // $("#card-display > div").slideDown(1, function(){console.log("All shown")});
-    $("#card-display > div").css("display", "block");
-    $(".trans-3d").css("display", "none");
-
+    console.log(list);
+    $("#card-display > div").slideDown(1, function(){console.log("All shown")});
+    $(".trans-3d").hide(1);
     console.log("All hidden");
-    
+    // $.ajaxSettings.async = false;
     $.map(list, function(num) {
         $(idString + " [name=\'card_" + num + "\']").show("fast"); 
     });

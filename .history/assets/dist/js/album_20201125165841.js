@@ -752,7 +752,7 @@ function deckDisplay(list, idString) {
 
     console.log("list: " + list);
     // $("#card-display > div").slideDown(1, function(){console.log("All shown")});
-    $("#card-display > div").css("display", "block");
+    $("#card-display > div").css("display", "shown");
     $(".trans-3d").css("display", "none");
 
     console.log("All hidden");

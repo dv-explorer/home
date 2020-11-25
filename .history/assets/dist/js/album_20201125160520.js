@@ -751,25 +751,31 @@ function deckDisplay(list, idString) {
     // });
 
     console.log("list: " + list);
-    // $("#card-display > div").slideDown(1, function(){console.log("All shown")});
-    $("#card-display > div").css("display", "block");
-    $(".trans-3d").css("display", "none");
-
-    console.log("All hidden");
-    
-    $.map(list, function(num) {
-        $(idString + " [name=\'card_" + num + "\']").show("fast"); 
-    });
-    
-    document.querySelectorAll("#card-display > div").forEach((part, i, parent) => {
-        if($(part).find(".trans-3d:visible").length == 0) {
-            console.log("123");
-            $(part).slideUp("fast");
-            $("." + $(part).attr("id") + ":not(.disabled)").addClass("disabled");
-        } else {
-            console.log("456_" + $(part).find(".trans-3d:visible").length);
-            $("." + $(part).attr("id")).removeClass("disabled");
+    $("#card-display > div").slideDown(1, function(){console.log("All shown")});
+    var aaa  = 0;
+    $(".trans-3d").hide(1, function() {
+        aaa++;
+        if($(".trans-3d:visible").length > 0) {
+            return ;
         }
+
+        console.log("All hidden _ " + aaa);
+        
+        // $.ajaxSettings.async = false;
+        $.map(list, function(num) {
+            $(idString + " [name=\'card_" + num + "\']").show("fast"); 
+        });
+        
+        document.querySelectorAll("#card-display > div").forEach((part, i, parent) => {
+            if($(part).find(".trans-3d:visible").length == 0) {
+                console.log("123");
+                $(part).slideUp("fast");
+                $("." + $(part).attr("id") + ":not(.disabled)").addClass("disabled");
+            } else {
+                console.log("456_" + $(part).find(".trans-3d:visible").length);
+                $("." + $(part).attr("id")).removeClass("disabled");
+            }
+        });
     });
     
     $(".btn-primary-group a").removeClass("active");

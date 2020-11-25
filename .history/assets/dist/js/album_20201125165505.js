@@ -751,9 +751,10 @@ function deckDisplay(list, idString) {
     // });
 
     console.log("list: " + list);
-    // $("#card-display > div").slideDown(1, function(){console.log("All shown")});
-    $("#card-display > div").css("display", "block");
-    $(".trans-3d").css("display", "none");
+    $("#card-display > div").slideDown(1, function(){console.log("All shown")});
+    
+    $.ajaxSettings.async = false;
+    $(".trans-3d").hide(1);
 
     console.log("All hidden");
     

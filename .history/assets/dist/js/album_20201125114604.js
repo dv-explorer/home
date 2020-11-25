@@ -672,7 +672,7 @@ function searchFunc() {
                 show_list.push(num);
             });
             deckDisplay(show_list, "#" + read.toLowerCase());
-            console.log("Search finished 01");
+            console.log("Search finished");
             
         } else {
 
@@ -688,11 +688,10 @@ function searchFunc() {
                     var num = item.card_id;
                     item = (Object.values(item)).join(" ");
                     if(item.search(rex) >= 0) {show_list.push(num);}
-                    if(i == 42) {console.log("Search finished 02");}
+                    if(i == 42) {console.log("Search finished");}
                 });
 
             }).done(function() {
-                console.log("ready to manipulate deckDisplay.");
                 deckDisplay(show_list);
             });
         }
@@ -750,17 +749,13 @@ function deckDisplay(list, idString) {
     //     }
     // });
 
-    console.log("list: " + list);
-    // $("#card-display > div").slideDown(1, function(){console.log("All shown")});
-    $("#card-display > div").css("display", "block");
-    $(".trans-3d").css("display", "none");
-
-    console.log("All hidden");
-    
+    console.log(list);
+    $("#card-display > div").slideDown(1, function(){console.log("All shown")});
+    $(".trans-3d").hide(1, function(){console.log("All hidden")});
     $.map(list, function(num) {
         $(idString + " [name=\'card_" + num + "\']").show("fast"); 
     });
-    
+    // $.ajaxSettings.async = false;
     document.querySelectorAll("#card-display > div").forEach((part, i, parent) => {
         if($(part).find(".trans-3d:visible").length == 0) {
             console.log("123");
@@ -770,8 +765,10 @@ function deckDisplay(list, idString) {
             console.log("456_" + $(part).find(".trans-3d:visible").length);
             $("." + $(part).attr("id")).removeClass("disabled");
         }
-    });
-    
+    })
+    // $("#card-display > div").each(function(i, part) {
+        
+    // });
     $(".btn-primary-group a").removeClass("active");
     $(".btn-primary-group a:not(.disabled):first-child").addClass("active");
 
