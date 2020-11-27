@@ -143,12 +143,10 @@ function setupInteraction() {
     //     $(".front > img").each(function(){ImgLoading("front");});
     //     $(".back > img").each(function(){ImgLoading("back");});
     // });
-    
-    var displayDepth = document.querySelector("#card-display").scrollHeight;
+
     echo.init({
-        offset: displayDepth + 10,
+        offset: 140,
         throttle: 250,
-        debounce: false,
         unload: false,
         callback: function(element, op) {
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
@@ -368,7 +366,7 @@ function createDisplay(cards_doc) {
 
             $.map(card_NS, function(NS) {
                 $("#" + $.trim(NS) + " > .card-deck").append(drawCard(card.card_id, colorSync(card_NS, color_hash), card.ds_tag.toLowerCase(), card.EL_tag.toLowerCase(), card.eg_url, front_info, back_caption));
-                if(card.card_id == json.length) {
+                if(card.card_id == 43) {
                     console.log("last card is loaded.");
                 }
             });

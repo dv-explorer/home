@@ -30,21 +30,11 @@
     margin-right: 0px;
     margin-left: 0px;
     padding-left: 1.75rem;
-    padding-right: 5.25rem;
+    padding-right: 1rem;
   }
 
-  /* .card-deck > .trans-3d {
+  .card-deck > .trans-3d {
     padding-left: 2rem;
-  } */
-
-  .deck-reminder {
-    position: sticky;
-    top: -1px;
-    z-index: 500;
-    padding-top: 1.375rem;
-    padding-bottom: 0.625rem;
-    padding-left: 2.75rem;
-    padding-right: 7rem;
   }
 }
 
@@ -74,7 +64,6 @@
   #card-display{
     padding-top: 1rem;
   }
-  
 }
 
 @media (min-width: 576px) {
@@ -110,7 +99,6 @@
     padding-right: 7rem; */
     /* max-width: 60.5rem; */
     /* width: 60.5rem; */
-    padding: 0;
     position: relative;
     overflow-y: auto;
   }
@@ -172,10 +160,8 @@
 
   .card-deck > .trans-3d {
     max-width: 21.375rem;
-    margin: auto;
-    padding: 0;
-    /* padding-left: 0.5rem;
-    padding-right: auto; */
+    padding-left: 0.5rem;
+    padding-right: auto;
   }
 
   .modal-content {
@@ -247,18 +233,17 @@ footer p {
 
 /* animation & transaction */
 
-/* .col-md-3.trans-3d {
+.col-md-3.trans-3d {
   padding-left: 0;
   padding-right: 0;
   margin-left: 15px;
   margin-right: 15px;
-} */
+}
 
 header.jumbotron {
   padding-bottom: 0.625rem;
   background-color: transparent;
   background-repeat: no-repeat;
-  box-shadow: 0 2px 4px #DCDFEF;
 
   position: sticky;
   top: 0;
@@ -361,11 +346,10 @@ input {
   background-color: #F6F6F6;
   /* border-right: 0.0625rem solid #D5D5D5; */
   border-bottom: 1px solid #D5D5D5;
-  box-shadow: 0 2px 4px #DCDFEF;
 
   position: sticky;
   overflow-y: auto;
-  z-index: 750;
+  z-index: 500;
   /* top: 5.375rem; */
   /* height: (100vh - 5.375rem); */
 
@@ -694,20 +678,18 @@ background: #D6E5F5 0% 0% no-repeat padding-box;
 }
 
 .display-desc {
-  color: #333333;
+  color: #666666;
   text-align: left;
 
   padding-left: 0.5rem;
-  margin-bottom: 0rem;
+  margin-bottom: 0.625rem;
 }
 
 .shadow {
   box-shadow: 5px 5px 20px #8D8D8DB3;
 }
 
-.card-deck .card-inner {
-  position: relative;
-
+.card-deck > .trans-3d {
   /* padding-left: 0;
   padding-right: 0; */
 
@@ -866,8 +848,7 @@ background: #D6E5F5 0% 0% no-repeat padding-box;
 /* card animation */
 .front, .back {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  /* height: 100% !important; */
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transform-style: preserve-3d;
@@ -948,15 +929,4 @@ button.close:hover {
 
 .tooltip-inner {
   max-width: initial;
-}
-
-.deck-reminder + .card-deck {
-  padding-top: 0.625rem;
-}
-
-.deck-reminder.active-sticky {
-  backdrop-filter: saturate(180%) blur(20px);
-  background-color: #FFFFFF90;
-  border-bottom: 1px solid #00000016;
-  box-shadow: 0 1px 2px #DCDFEF32;
 }

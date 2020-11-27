@@ -143,14 +143,13 @@ function setupInteraction() {
     //     $(".front > img").each(function(){ImgLoading("front");});
     //     $(".back > img").each(function(){ImgLoading("back");});
     // });
-    
-    var displayDepth = document.querySelector("#card-display").scrollHeight;
+
     echo.init({
-        offset: displayDepth + 10,
+        offset: 0,
         throttle: 250,
-        debounce: false,
         unload: false,
         callback: function(element, op) {
+            // console.log(element);
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
 
             if(op === 'load' && status === "front"){
@@ -368,7 +367,7 @@ function createDisplay(cards_doc) {
 
             $.map(card_NS, function(NS) {
                 $("#" + $.trim(NS) + " > .card-deck").append(drawCard(card.card_id, colorSync(card_NS, color_hash), card.ds_tag.toLowerCase(), card.EL_tag.toLowerCase(), card.eg_url, front_info, back_caption));
-                if(card.card_id == json.length) {
+                if(card.card_id == 43) {
                     console.log("last card is loaded.");
                 }
             });
@@ -666,35 +665,35 @@ function displaySpy() {
     });
 
     // decorate deck reminders
-    document.querySelectorAll(".deck-reminder").forEach((reminder, i, parent) => {
-        if(reminder.style.visibility == "hidden") {
-            return false;
-        }
-        var position = reminder.getBoundingClientRect().top - document.getElementById("card-display").offsetTop;
-        if(position < -0.5 && position > -10) {
-            if(!$(reminder).hasClass("active-sticky")) {
-                $(reminder).addClass("active-sticky");
-            }
-        } else if($(reminder).hasClass("active-sticky")) {
-            $(reminder).removeClass("active-sticky");
-        }
-    });
+    // document.querySelectorAll(".deck-reminder").forEach((reminder, i, parent) => {
+    //     if(reminder.style.visibility == "hidden") {
+    //         return false;
+    //     }
+    //     var position = reminder.getBoundingClientRect().top - document.getElementById("card-display").offsetTop;
+    //     if(position < -0.5 && position > -10) {
+    //         if(!$(reminder).hasClass("active-sticky")) {
+    //             $(reminder).addClass("active-sticky");
+    //         }
+    //     } else if($(reminder).hasClass("active-sticky")) {
+    //         $(reminder).removeClass("active-sticky");
+    //     }
+    // });
 
     // show/hide deck reminders
-    if(window.innerWidth > 768 && document.querySelector(".deck-reminder.active-sticky")) {
-        var currentReminder = document.querySelector(".deck-reminder.active-sticky");
-        var currentDeck = currentReminder.parentNode.querySelector(".card-deck");
-        var dist = currentDeck.getBoundingClientRect().bottom - currentReminder.getBoundingClientRect().top;
-        if(dist < 0.5 * document.querySelector("#card-display").offsetHeight) {
-            if($(currentReminder).css("opacity") == 1) {
-                $(currentReminder).animate({opacity: 0}, 120);
-            }
-        } else {
-            if($(currentReminder).css("opacity") == 0) {
-                $(currentReminder).animate({opacity: 1}, 120);
-            }
-        }
-    }
+    // if(window.innerWidth > 768 && document.querySelector(".deck-reminder.active-sticky")) {
+    //     var currentReminder = document.querySelector(".deck-reminder.active-sticky");
+    //     var currentDeck = currentReminder.parentNode.querySelector(".card-deck");
+    //     var dist = currentDeck.getBoundingClientRect().bottom - currentReminder.getBoundingClientRect().top;
+    //     if(dist < 0.5 * document.querySelector("#card-display").offsetHeight) {
+    //         if($(currentReminder).css("opacity") == 1) {
+    //             $(currentReminder).animate({opacity: 0}, 120);
+    //         }
+    //     } else {
+    //         if($(currentReminder).css("opacity") == 0) {
+    //             $(currentReminder).animate({opacity: 1}, 120);
+    //         }
+    //     }
+    // }
 
 }
 

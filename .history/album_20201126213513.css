@@ -361,11 +361,10 @@ input {
   background-color: #F6F6F6;
   /* border-right: 0.0625rem solid #D5D5D5; */
   border-bottom: 1px solid #D5D5D5;
-  box-shadow: 0 2px 4px #DCDFEF;
 
   position: sticky;
   overflow-y: auto;
-  z-index: 750;
+  z-index: 500;
   /* top: 5.375rem; */
   /* height: (100vh - 5.375rem); */
 

@@ -143,14 +143,14 @@ function setupInteraction() {
     //     $(".front > img").each(function(){ImgLoading("front");});
     //     $(".back > img").each(function(){ImgLoading("back");});
     // });
-    
-    var displayDepth = document.querySelector("#card-display").scrollHeight;
+
     echo.init({
-        offset: displayDepth + 10,
+        offset: 0,
         throttle: 250,
         debounce: false,
         unload: false,
         callback: function(element, op) {
+            console.log("hello_" + element.src);
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
 
             if(op === 'load' && status === "front"){
@@ -755,7 +755,7 @@ function searchFunc() {
 function panelLayout() {
     var bannerHeight = $("header").outerHeight();
     var panel = $("#filter-panel");
-    var display = $("#card-display");
+    // var display = $("#card-display");
     panel.css({
         // "position": "sticky",
         // "overflow-y": "auto",
@@ -764,11 +764,11 @@ function panelLayout() {
     });
     if($(window).outerWidth() >= 768) {
         panel.css("height", ($(window).outerHeight() - bannerHeight));
-        display.css("height", ($(window).outerHeight() - bannerHeight));
+        // display.css("height", ($(window).outerHeight() - bannerHeight));
         return " list-group";
     } else {
         panel.css("height", "100%");
-        display.css("height", "100%");
+        // display.css("height", "100%");
         return "-sm";
     }
 }

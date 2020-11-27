@@ -143,12 +143,10 @@ function setupInteraction() {
     //     $(".front > img").each(function(){ImgLoading("front");});
     //     $(".back > img").each(function(){ImgLoading("back");});
     // });
-    
-    var displayDepth = document.querySelector("#card-display").scrollHeight;
+
     echo.init({
-        offset: displayDepth + 10,
+        offset: 0,
         throttle: 250,
-        debounce: false,
         unload: false,
         callback: function(element, op) {
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
@@ -368,7 +366,7 @@ function createDisplay(cards_doc) {
 
             $.map(card_NS, function(NS) {
                 $("#" + $.trim(NS) + " > .card-deck").append(drawCard(card.card_id, colorSync(card_NS, color_hash), card.ds_tag.toLowerCase(), card.EL_tag.toLowerCase(), card.eg_url, front_info, back_caption));
-                if(card.card_id == json.length) {
+                if(card.card_id == 43) {
                     console.log("last card is loaded.");
                 }
             });
@@ -564,7 +562,7 @@ function EL_filter() {
             var targetSet = $(this).parentsUntil("#card-display");
             var NS_tag = $(targetSet[targetSet.length-1]).attr("id");
             $(".disabled." + NS_tag).removeClass("disabled");
-            $("#card-display ." + EL_tag).fadeIn(500);
+            $("#card-display ." + EL_tag).show(500);
             // setTimeout(function(){$("#card-display ." + EL_tag).show("slow");}, 300);
             $("#" + NS_tag + ":hidden").slideDown(420);
 
@@ -656,7 +654,7 @@ function NS_scroller() {
 function displaySpy() {
     var screenH = $(window).height() - $("#card-display").offset().top; // if screen height is very limited - > bug $("#card-display").outerHeight() + $("#card-display").height();
     $("#card-display > div").each(function(i, item){
-        var currentPosition = $(item).position().top - $(window).scrollTop();
+    var currentPosition = $(item).position().top - $(window).scrollTop();
         if($("." + $(item).attr("id")).is(":not(.active)") && (currentPosition < 0.5*screenH) && (($(item).height() + currentPosition) >= 0.5*screenH)) {
             $(".btn-primary-group > .btn.active").removeClass("active");
             $(".btn-primary-group > .btn:not(.disabled)." + $(item).attr("id")).addClass("active");
@@ -665,37 +663,20 @@ function displaySpy() {
         }
     });
 
-    // decorate deck reminders
-    document.querySelectorAll(".deck-reminder").forEach((reminder, i, parent) => {
-        if(reminder.style.visibility == "hidden") {
-            return false;
-        }
-        var position = reminder.getBoundingClientRect().top - document.getElementById("card-display").offsetTop;
-        if(position < -0.5 && position > -10) {
+    // var reminder = $(".deck-reminder");
+    $(".deck-reminder").each((i, reminder) => {
+        var position = $(reminder).offset().top - $("#card-display").position().top;
+        if(position >= -1 && position < 5) {
             if(!$(reminder).hasClass("active-sticky")) {
+                console.log("gaga_" + i);
                 $(reminder).addClass("active-sticky");
+            } else {
+                return false;
             }
         } else if($(reminder).hasClass("active-sticky")) {
             $(reminder).removeClass("active-sticky");
         }
     });
-
-    // show/hide deck reminders
-    if(window.innerWidth > 768 && document.querySelector(".deck-reminder.active-sticky")) {
-        var currentReminder = document.querySelector(".deck-reminder.active-sticky");
-        var currentDeck = currentReminder.parentNode.querySelector(".card-deck");
-        var dist = currentDeck.getBoundingClientRect().bottom - currentReminder.getBoundingClientRect().top;
-        if(dist < 0.5 * document.querySelector("#card-display").offsetHeight) {
-            if($(currentReminder).css("opacity") == 1) {
-                $(currentReminder).animate({opacity: 0}, 120);
-            }
-        } else {
-            if($(currentReminder).css("opacity") == 0) {
-                $(currentReminder).animate({opacity: 1}, 120);
-            }
-        }
-    }
-
 }
 
 function searchFunc() {
@@ -805,7 +786,7 @@ function deckDisplay(list, idString) {
     console.log("All hidden");
     
     $.map(list, function(num) {
-        $(idString + " [name=\'card_" + num + "\']").fadeIn("fast"); 
+        $(idString + " [name=\'card_" + num + "\']").show("fast"); 
     });
     
     document.querySelectorAll("#card-display > div").forEach((part, i, parent) => {

@@ -151,6 +151,7 @@ function setupInteraction() {
         debounce: false,
         unload: false,
         callback: function(element, op) {
+            // console.log(displayDepth);
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
 
             if(op === 'load' && status === "front"){

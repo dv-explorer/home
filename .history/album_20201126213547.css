@@ -365,7 +365,7 @@ input {
 
   position: sticky;
   overflow-y: auto;
-  z-index: 750;
+  z-index: 500;
   /* top: 5.375rem; */
   /* height: (100vh - 5.375rem); */
 

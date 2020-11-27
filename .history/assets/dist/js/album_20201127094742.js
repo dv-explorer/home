@@ -144,13 +144,14 @@ function setupInteraction() {
     //     $(".back > img").each(function(){ImgLoading("back");});
     // });
     
-    var displayDepth = document.querySelector("#card-display").scrollHeight;
+    var displayDepth = document.querySelectorAll("#card-display").scrollHeight;
     echo.init({
         offset: displayDepth + 10,
         throttle: 250,
         debounce: false,
         unload: false,
         callback: function(element, op) {
+            console.log(displayDepth);
             var status = ($($(element).parent()[0]).attr("class") == "card-img-box" ? "back" : "front");
 
             if(op === 'load' && status === "front"){
