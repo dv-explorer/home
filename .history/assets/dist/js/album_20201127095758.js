@@ -671,7 +671,7 @@ function displaySpy() {
             return false;
         }
         var position = reminder.getBoundingClientRect().top - document.getElementById("card-display").offsetTop;
-        if(position < -0.5 && position > -20) {
+        if(position < -0.5 && position > -30) {
             if(!$(reminder).hasClass("active-sticky")) {
                 $(reminder).addClass("active-sticky");
             }
