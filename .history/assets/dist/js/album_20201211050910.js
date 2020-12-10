@@ -357,7 +357,7 @@ function createDisplay(cards_doc) {
     $.getJSON(cards_doc, function(json) {
         $.each(json, function(id, card) {
             let card_NS = card.NS_tag.toLowerCase().split(",");
-            let front_info = {"how": card.how, "why": card.why, "avt": card.avt || "Size contrast is a common way of attracting attention and conveying importance."};
+            let front_info = {"how": card.how, "why": card.why, "avt": card.avt || "Applicable Visualization Techniques"};
             let back_caption = {
                 "title":card.eg_title,
                 "source":card.eg_source,

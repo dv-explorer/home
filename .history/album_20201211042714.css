@@ -1,8 +1,8 @@
 @media (min-width: 768px){
 
   #filter-panel {
-    width: 15.75rem;
-    max-width: 15.75rem;
+    width: 15.5rem;
+    max-width: 15.5rem;
 
     padding-bottom: 1.25rem;
     padding-top: 1.25rem;
@@ -13,7 +13,7 @@
   }
 
   .btn-panel + .btn-panel {
-    margin-top: 1.25rem;
+    margin-top: 1.75rem;
   }
 
   .display-title span {
@@ -118,7 +118,7 @@
 
   #filter-panel {
     /* width: 15.375rem; */
-    min-width: 15.75rem;
+    min-width: 15.375rem;
     overflow-x: hidden;
     padding-left: 1.875rem;
     padding-right: 1.625rem;
@@ -230,7 +230,7 @@ footer p {
 
 .btn-primary-group > .btn,
 .btn-secondary-group > .btn {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: PingFangSC, Arial, Helvetica, sans-serif;
   font-weight: normal;
   font-size: 0.75rem;
   color: #333333;
@@ -238,20 +238,17 @@ footer p {
 
 .form-control, .display-desc, .card-text, .caption, p.lead,
 .card-header > p,
-.card-bottom > .btn {
-  font-family: Arial, Helvetica, sans-serif;
+.card-bottom > .btn,
+.card-bottom > .card-num {
+  font-family: PingFangSC, Arial, Helvetica, sans-serif;
   font-weight: normal;
 }
 
 .form-control, .display-desc, .card-text, .caption, .btn,
 .card-header > p,
-.card-bottom > .btn {
-  font-size: 0.875rem;
-}
-
+.card-bottom > .btn,
 .card-bottom > .card-num {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1rem;
+  font-size: 0.875rem;
 }
 
 .card-mb-20 {
@@ -421,7 +418,7 @@ input {
 }
 
 .btn-primary-group .btn-block + .btn-block {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 .btn-secondary-group .btn-block + .btn-block {
@@ -596,7 +593,7 @@ input {
 
 .btn-primary-group > .btn:not(.active):active,
 .btn-primary-group-sm > .btn:not(.active):active {
-  background-color: #F1F1F196;
+  background-color: #F1F1F1;
 }
 
 .btn-primary-group-sm {
@@ -669,9 +666,6 @@ input {
   left: 0;
   z-index: 800;
   max-height: 11.75rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .back .img-overlay {
@@ -760,7 +754,7 @@ input {
 }
 
 .card-header:first-child {
-  border-radius: 0.375rem 0.375rem 0 0;
+  border-radius: 0.625rem 0.625rem 0 0;
 }
 
 .card-header > h4 {
@@ -791,7 +785,7 @@ input {
 }
 
 .card-body {
-  padding: 1rem;
+  padding: 0.875rem 1.375rem;
 
   display: -ms-flexbox !important;
   display: flex !important;
@@ -801,7 +795,7 @@ input {
 }
 
 .card-body > .card-subtitle {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: bold;
   margin-bottom: 0.125rem;
   margin-top: 0;
@@ -809,9 +803,9 @@ input {
 
 .card-body > p {
   line-height: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   text-align: left;
-  color: #000000;
+  color: #666666;
 
   overflow:hidden;
   text-overflow:ellipsis;
@@ -831,8 +825,8 @@ input {
 }
 
 .card-footer {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 1.625rem;
+  padding-right: 1.625rem;
   
   background-color: transparent;
   /* z-index: 500; */
@@ -846,19 +840,19 @@ input {
 
 .card-footer a:before {
   content: url(assets/media/link.svg);
-  width: 1rem;
-  height: 1rem;
+  width: 14px;
+  height: 14px;
   margin-top: auto;
   margin-bottom: auto;
   display: inline-block;
   position: relative;
-  top: 50%;
-  margin-right: 0.125rem;
+  top: 0.25rem;
+  margin-right: 0.5rem;
 }
 
 .card-bottom {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 1.625rem;
+  padding-bottom: 1.625rem;
 
   display: -ms-flexbox !important;
   display: flex !important;
@@ -873,11 +867,11 @@ input {
 }
 
 .card-bottom > .btn {
-  color: #000000;
-  background: #FFF6E6;
-  /* width: 7.25rem; */
+  color: #FFFFFF;
+  background: transparent linear-gradient(180deg, #666666 0%, #333333 100%) 0% 0% no-repeat padding-box;
+  width: 7.25rem;
 
-  padding: 0.125rem 1rem;
+  padding: 0.5rem 0.875rem;
 
   /* transform: translateZ(40px);
   transform-style: preserve-3d;
@@ -886,7 +880,7 @@ input {
 
 .card-bottom > .card-num {
   color: #333333;
-  font-weight: 600;
+  font-weight: normal;
 }
 
 /* card animation */
@@ -987,10 +981,6 @@ button.close:hover {
   box-shadow: 0 1px 2px #DCDFEF32;
 }
 
-.card-footer.card-bottom {
-  border-radius: 0 0 0.375rem 0.375rem;
-}
-
 .card-frontImg, .card-img-box {
   max-height: 11.75rem;
   overflow: hidden;
@@ -1002,10 +992,4 @@ button.close:hover {
   max-height: 11.75rem;
 } */
 
-::-webkit-input-placeholder { /* WebKit browsers */
-  color: #000000;
-}
 
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: #000000;
-}

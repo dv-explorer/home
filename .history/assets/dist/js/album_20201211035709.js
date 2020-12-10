@@ -357,7 +357,7 @@ function createDisplay(cards_doc) {
     $.getJSON(cards_doc, function(json) {
         $.each(json, function(id, card) {
             let card_NS = card.NS_tag.toLowerCase().split(",");
-            let front_info = {"how": card.how, "why": card.why, "avt": card.avt || "Size contrast is a common way of attracting attention and conveying importance."};
+            let front_info = {"how": card.how, "why": card.why};
             let back_caption = {
                 "title":card.eg_title,
                 "source":card.eg_source,
@@ -386,11 +386,11 @@ function drawCard(card_id, card_color, ds_tag, EL_tag, url, front_info, back_cap
     ds_tag = ds_tag || "design space";
     EL_tag = EL_tag || "element layer";
     url = url || "#";
-    front_info = front_info || {"how":"Interpretation", "why":"Interpretation", "avt": "Size contrast is a common way of attracting attention and conveying importance."};
+    front_info = front_info || {"how":"Interpretation", "why":"Interpretation"};
     back_caption = back_caption || {"title":"back title", "source":"back source", "year":"Year", "category":"Category", "subcategory":"Subcategory", "url":"# back link"};;
     let EL_code = EL_abr(EL_tag);
 
-    return $("<div></div>").addClass("col-xl-4 col-lg-6 col-sm-12 card-mb-20 position-relative trans-3d")
+    return $("<div></div>").addClass("col-xl-4 col-lg-6 col-sm-12 mb-5 position-relative trans-3d")
         .addClass(EL_code)
         .attr("name", "card_"+card_id)
         .append(
@@ -487,9 +487,7 @@ function drawCardBody(x, card_id, front_info, back_caption) {
         bodyElement.append($("<div>HOW</div>").addClass("card-subtitle"))
             .append($("<p></p>").addClass("card-text").text(front_info.how))
             .append($("<div>WHY</div>").addClass("card-subtitle"))
-            .append($("<p></p>").addClass("card-text").text(front_info.why))
-            .append($("<div>Applicable Visualization Techniques</div>").addClass("card-subtitle"))
-            .append($("<p></p>").addClass("card-text").text(front_info.avt));
+            .append($("<p></p>").addClass("card-text").text(front_info.why));
     } else {
         var caption = $("<div></div>").addClass("caption")
             .append(appendCaption("Source", back_caption.source))
