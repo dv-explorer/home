@@ -668,7 +668,7 @@ input {
   position: absolute;
   left: 0;
   z-index: 800;
-  max-height: 11.75rem;
+  /* max-height: 11.75rem; */
   display: flex;
   justify-content: center;
   align-items: center;

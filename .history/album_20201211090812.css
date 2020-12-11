@@ -37,7 +37,7 @@
     top: -1px;
     z-index: 500;
     padding-top: 1.25rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.625rem;
     padding-left: 3.625rem;
     padding-right: 7rem;
   }
@@ -977,7 +977,7 @@ button.close:hover {
 }
 
 .deck-reminder + .card-deck {
-  padding-top: 0.25rem;
+  padding-top: 0.125rem;
 }
 
 .deck-reminder.active-sticky {
