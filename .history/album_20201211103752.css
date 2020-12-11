@@ -403,7 +403,7 @@ input {
 } */
 
 .btn-secondary-group > .btn:nth-child(2) {
-  letter-spacing: -0.6px;
+  letter-spacing: -0.8px;
 }
 
 .btn-primary-group > .btn, 
@@ -719,7 +719,7 @@ input {
   vertical-align: middle;
   display: inline-block;
   position: absolute;
-  margin-top: 0.5rem;
+  margin-top: 0.1rem;
   /* left: 1.875rem; */
 }
 

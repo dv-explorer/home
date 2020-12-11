@@ -394,16 +394,15 @@ input {
 
 .panel-title {
   color: #333333;
-  margin-bottom: 0.5rem;
 }
 
-/* .panel-title + .btn-primary-group,
+.panel-title + .btn-primary-group,
 .panel-title + .btn-secondary-group {
-  margin-top: 0.5rem;
-} */
+  margin-top: 1.375rem;
+}
 
 .btn-secondary-group > .btn:nth-child(2) {
-  letter-spacing: -0.6px;
+  letter-spacing: -0.8px;
 }
 
 .btn-primary-group > .btn, 
@@ -719,7 +718,7 @@ input {
   vertical-align: middle;
   display: inline-block;
   position: absolute;
-  margin-top: 0.5rem;
+  margin-top: 0.1rem;
   /* left: 1.875rem; */
 }
 
