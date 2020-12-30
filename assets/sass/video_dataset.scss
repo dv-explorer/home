@@ -1,0 +1,83 @@
+@import "variables";
+
+
+.video-container {
+    @include page-height;
+    @include container-bg-image;
+}
+
+
+.video-deck {
+    margin-left: 30px - 15px - 10px;
+    margin-right: 30px - 15px - 10px;
+    margin-top: 0.2 * 1.25rem;
+    padding-top: 0.8 * 1.25rem;
+    justify-content: center;
+
+    &-single {
+        padding-left: $card-between-distance / 2;
+        padding-right: $card-between-distance / 2;
+        margin-bottom: 1.25rem;
+        max-width: 16rem + $card-between-distance;
+    }
+
+    .card {
+        background-color: $bg-white;
+        border: transparent;
+        box-shadow: 3px 4px 8px 4px rgba(92,92,92,0.08);
+        border-radius: 0.375rem;
+        margin-left: 0;
+        margin-right: 0;
+        height: 100%;
+
+        &-body {
+            padding: 0.375rem 0.75rem 0.75rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        &-img-top{
+            @include card-bg-image;
+            height: 9rem;
+            position: relative;
+            overflow: hidden;
+            border-top-left-radius: 0.375rem;
+            border-top-right-radius: 0.375rem;
+
+            img {
+                height: 100%;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                left: 50%;
+                top: 50%;
+            }
+        }
+
+        &-title, 
+        &-text {
+            margin-bottom: 0;
+            line-height: 1rem;
+        }
+
+        &-title {
+            @include small-title;
+        }
+
+        &-text {
+            @include plain-text;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .hidden-id {
+            @include plain-text-key;
+            color: $font-black;
+            opacity: 0.08;
+            // float: right;
+            position: absolute;
+            right: 0.75rem;
+        }
+    }
+}

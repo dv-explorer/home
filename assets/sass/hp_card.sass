@@ -1,0 +1,209 @@
+@import "variables"
+
+$card-height: 100%
+$deck-margin-left: 3rem
+$deck-margin-right: 2rem
+
+
+.card-deck
+    margin-left: $deck-margin-left
+    margin-right: $deck-margin-right
+
+    &-single
+        max-width: 22rem + $card-between-distance
+        margin-bottom: 1.25rem
+        position: relative
+        padding-left: $card-between-distance / 2
+        padding-right: $card-between-distance / 2
+
+    .card
+        background-color: $bg-white
+        border: transparent
+        box-shadow: 3px 4px 8px 4px rgba(92,92,92,0.08)
+        border-radius: 0.375rem
+        margin-left: 0
+        margin-right: 0
+
+        &-header
+            padding: 0.25rem 1rem 0.5rem
+            border: transparent
+            border-top-left-radius: $card-radius
+            border-top-right-radius: $card-radius
+            border-bottom-right-radius: 0
+            border-bottom-left-radius: 0
+            color: $font-white
+            display: flex
+            flex-direction: row
+
+            > .header-symbol
+                content: ""
+                display: flex
+                margin-left: auto
+                margin-right: 1px
+                margin-top: auto
+                margin-bottom: 1px
+
+        &-frontImg,
+        &-imgBox
+            @include card-bg-image
+            width: 100%
+            height: 12.25rem
+            min-height: 12.25rem
+            position: relative
+
+            .card-img
+                object-fit: cover
+                vertical-align: middle
+                margin: 0 auto
+                width: 100%
+                height: 100%
+                border-radius: 0
+                position: absolute
+                // top: 50%
+                // left: 50%
+                // transform: translate(-50%, -50%)
+
+        &-body
+            color: $font-black
+            padding: 0 1rem
+            margin: 1rem 0
+            text-align: left
+            overflow-y: auto
+
+            &-subtitle
+                @include small-title
+
+            .card-body-text + .card-body-subtitle,
+            &-caption
+                margin-top: 1rem
+
+            &-text
+                @include plain-text
+                line-height: 1rem
+
+            &-caption
+                > *
+                    @include plain-text
+                    line-height: 1rem
+            
+                span
+                    @include plain-text-key
+
+        &-footer
+            background: none
+            padding: 1rem 1rem
+            border-top: 1px solid #DEDEDE
+            border-top-left-radius: 0
+            border-top-right-radius: 0
+            border-bottom-left-radius: $card-radius
+            border-bottom-right-radius: $card-radius
+            display: flex
+            align-content: center
+            height: 3.5rem
+
+            &-num,
+            a
+                @include mid-title-semibold
+
+            &-num
+                color: $font-black
+
+            &-bottom
+                color: $font-red
+                font-size: 0.75rem
+                font-weight: 400
+                padding: 0.125rem 1rem
+                background-color: $bg-yellow-light
+                border: 1px solid #a6a6a610
+                border-radius: 50vh
+                margin-left: auto
+                outline: none
+
+                &:active
+                    background-color: $bg-yellow-normal
+
+            a
+                color: $font-blue
+                align-self: center
+
+            &-url
+                content: ""
+                width: 16px
+                height: 16px
+                background-image: url(../icon/icon_sprite.svg)
+                background-position: -100px -20px
+                background-repeat: no-repeat
+                display: inline-block
+                margin-right: 0.5rem
+
+
+.img-cover
+    opacity: 0
+    height: 100%
+    width: 100%
+
+    &-mask
+        text-align: center
+        width: 100%
+        height: 25%
+        bottom: 0
+        background-image: linear-gradient(to bottom, transparent, #000000)
+        opacity: 60%
+        position: absolute
+        border: 0
+
+    &-overlay
+        background-image: url(../icon/icon_sprite.svg)
+        background-position: -140px 0
+        position: absolute
+        bottom: 0.5rem
+        background-color: #333333
+        opacity: 75%
+        height: 32px
+        width: 32px
+        float: right
+        right: 1.25rem
+        border-radius: 0.25rem
+        background-repeat: no-repeat
+
+
+.header-text
+    &-title
+        @include large-title
+        line-height: 1.75rem
+        margin: 0
+
+    &-class
+        @include plain-subtext
+        line-height: 1.25rem
+        margin: 0
+
+
+.card-inner
+    position: relative
+    height: 32.5rem
+
+    .front,
+    .back
+        position: absolute
+        width: 100%
+        height: 100%
+        backface-visibility: hidden
+        transform-style: preserve-3d
+        transition: ease-in-out 600ms
+
+    .front
+        transform: rotateY(0)
+
+    .back
+        transform: rotateY(-180deg)
+
+        .card-body-subtitle
+            margin-bottom: 1rem
+
+    &.turned-over
+        .front
+            transform: rotateY(180deg)
+
+        .back
+            transform: rotateY(0)

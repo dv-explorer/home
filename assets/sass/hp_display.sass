@@ -1,0 +1,108 @@
+@import "variables"
+
+$card-between-distance: 1.25rem
+$deck-margin-left: 3rem
+$deck-margin-right: 2rem
+
+.display-container
+    @include page-height
+    @include container-bg-image
+    position: relative
+    margin: 0
+    padding-left: 0rem
+    padding-right: 0rem
+
+    .card-deck
+        padding-top: 0.25rem
+
+
+#card-display-ex
+    @include inner-page-height
+    position: relative
+
+.search-fail 
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    color: #666666
+    font-size: 1.375rem
+    font-weight: 300
+    display: none
+    opacity: 0
+
+.display-reminder
+    width: 100%
+    padding: 0
+    margin: 0
+    position: sticky
+    top: -1px
+    z-index: 500
+    opacity: 1
+    transition: opacity 0.2s cubic-bezier(0.28, 0.11, 0.32, 1)
+
+    &.hidden-sticky 
+        opacity: 0 !important
+        // transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1)
+
+
+.reminder
+    $symbol-2radius: 0.875rem
+
+    &-content
+        width: 100%
+        padding-top: 1.25rem
+        padding-bottom: 0.75rem
+        padding-left: $deck-margin-left + ($card-between-distance / 2)
+        padding-right: $deck-margin-right + ($card-between-distance / 2) + 5rem
+        margin: 0
+        position: relative
+        z-index: 10
+
+    &-bg
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        z-index: 1
+        background-color: transparent
+        box-shadow: none
+        border-bottom: transparent
+        backdrop-filter: none
+        transition: background-color 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+        transition: box-shadow 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+
+    .active-sticky &-bg
+        background-color: #FFFFFF90
+        box-shadow: 0 1px 2px #DCDFEF32
+        backdrop-filter: saturate(180%) blur(20px)
+        border-bottom: 1px solid rgba(0, 0, 0, 0.16)
+        transition-property: background-color, box-shadow, backdrop-filter, border-bottom
+
+    &-head
+        margin-bottom: 0.25rem
+        font-size: 0
+        position: relative
+
+    &-title
+        @include mid-title-semibold
+        color: $font-black
+
+    &-symbol
+        content: ""
+        width: $symbol-2radius
+        height: $symbol-2radius
+        border-radius: 50vh
+        display: inline-block
+        position: absolute
+        left: -2 * $symbol-2radius
+        top: 50%
+        transform: translateY(-50%)
+        align-self: center
+
+    &-desc
+        @include plain-text
+        color: #1D1D1D
+        line-height: 1rem
+

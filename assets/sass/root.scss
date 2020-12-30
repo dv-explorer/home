@@ -1,0 +1,60 @@
+@import "variables";
+
+*, div, p {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+botton {
+    outline: none;
+}
+
+a {
+    color: $font-black;
+    text-decoration: none;
+    
+    &:hover,
+    &:focus {
+        color: $font-black;
+        text-decoration: none;
+    }
+}
+
+sup {
+    top: -.3em;
+}
+
+/* overflow */
+body,
+.overflow-hidden {
+    overflow: hidden;
+}
+
+/* footer */
+footer {
+    flex: 0 0 auto;
+    padding: 0.625rem 0;
+    background-color: $bg-yellow-light;
+    min-height: $footer-height;
+
+    &.footer-margin {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .footer-text {
+        @include plain-text;
+        color: $font-black;
+        opacity: 50%;
+        // width: $about-page-width;
+        text-align: center;
+        line-height: 1.5rem;
+        margin: 0 auto;
+    }
+}
+
+/* bootstrap tooltip */
+.tooltip-inner {
+    max-width: initial;
+}
