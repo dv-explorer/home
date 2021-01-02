@@ -24,8 +24,6 @@ class Homepage_Card {
         card_front_node.classList.add("card", "front");
         card_back_node.classList.add("card", "back");
 
-        deck_single_node.setAttribute("name", "card_" + this.parameters["card_id"]);
-
         // front
         let front_nodeList = [
             card_front_header, this._createCard_frontImg(),
