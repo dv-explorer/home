@@ -11,6 +11,7 @@ const VISIT_PAGE = function (page_name = "", callback) {
     VISITED_PAGE_ARR.push(page_name);
     callback();
 }
+let searched;
 
 // const IS_PAGE_EXISTED = function (page_name = "") {
 //     if(page_name.length > 0 && VISITED_PAGE_ARR.indexOf(page_name) >= 0) {
@@ -27,6 +28,7 @@ export const vns_method_to_btn_name = str => {
 };
 
 window.onload = function () {
+    searched = false;
     // 定位到tab
     VISIT_PAGE("home", openHomepage_ex);
 
@@ -168,20 +170,24 @@ function searchBox_EventListener(card_display_node = new HTMLElement()) {
     document.querySelector(".searchbox-button").onclick = () => {
         let search_text = document.querySelector(".searchbox-input").value;
         init_card_display(card_display_node, search_text);
+        searched = true;
     }
     document.querySelector(".searchbox-input").onfocus = () => {
         document.querySelector(".searchbox-input").value = "";
+        if(searched) {
+            init_card_display(card_display_node);
+        }
     }
-    document.querySelector(".searchbox-input").onblur = () => {
-        let search_text = document.querySelector(".searchbox-input").value;
-        document.querySelector(".searchbox-input").value = search_text ? search_text: "Search";
-    }
+    // document.querySelector(".searchbox-input").onblur = () => {
+    //     let search_text = document.querySelector(".searchbox-input").value;
+    //     document.querySelector(".searchbox-input").value = search_text ? search_text: "Search";
+    // }
     document.querySelector(".searchbox-input").addEventListener('keydown', (event) => {
         let keyCode =  event.keyCode || event.which;
         if( keyCode === 13) {
             let search_text = document.querySelector(".searchbox-input").value;
             init_card_display(card_display_node, search_text);
-            document.querySelector(".searchbox-input").blur();
+            searched = true;
         }
     });
 }

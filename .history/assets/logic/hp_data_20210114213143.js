@@ -337,7 +337,7 @@ DisplayQueue.prototype.card_filter = function (Filter = new CardsFilter("new fil
             return ;
         }
         let obj_list = obj_set.get_card_subject_list(VNS_tag);
-        obj_list = obj_list.filter(obj => Filter.filtering_method(obj.parameters, ["eg_url"]) === (trans? 1: 0));
+        obj_list = obj_list.filter(obj => Filter.filtering_method(obj.parameters) === (trans? 1: 0));
         obj_set._queue[VNS_tag][0]._cards_list = obj_list;
         obj_set._queue[VNS_tag][1] = obj_list.length;
     });

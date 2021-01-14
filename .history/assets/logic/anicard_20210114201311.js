@@ -175,13 +175,15 @@ function searchBox_EventListener(card_display_node = new HTMLElement()) {
     document.querySelector(".searchbox-input").onblur = () => {
         let search_text = document.querySelector(".searchbox-input").value;
         document.querySelector(".searchbox-input").value = search_text ? search_text: "Search";
+        // if(!search_text) {
+        //     init_card_display(card_display_node);
+        //     document.querySelector("input").value = "Search";
+        // }
     }
-    document.querySelector(".searchbox-input").addEventListener('keydown', (event) => {
-        let keyCode =  event.keyCode || event.which;
-        if( keyCode === 13) {
+    document.querySelector(".searchbox-input").addEventListener('keypress', (event) => {
+        if( event.keyCode === 13) {
             let search_text = document.querySelector(".searchbox-input").value;
             init_card_display(card_display_node, search_text);
-            document.querySelector(".searchbox-input").blur();
         }
     });
 }

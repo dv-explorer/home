@@ -181,8 +181,8 @@ function searchBox_EventListener(card_display_node = new HTMLElement()) {
         if( keyCode === 13) {
             let search_text = document.querySelector(".searchbox-input").value;
             init_card_display(card_display_node, search_text);
-            document.querySelector(".searchbox-input").blur();
         }
+        this.blur();
     });
 }
 
