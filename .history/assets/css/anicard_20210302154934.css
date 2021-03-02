@@ -190,18 +190,18 @@ sup {
 }
 
 input[type=button]{
-  -webkit-appearance: none;
-  outline: none;
+  -webkit-appearance:none;
+  outline:none
 }
 
 input[type=submit]{
   -webkit-appearance:none;
-  outline: none;
+  outline:none
 }
 
 input[type=input]{
-  -webkit-appearance: none;
-  outline: none;
+  -webkit-appearance:none;
+  outline:none
 }
 
 /* overflow */
