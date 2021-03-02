@@ -1205,6 +1205,7 @@ footer .footer-text {
   background-color: #FFFFFF;
   position: relative;
   z-index: 700;
+  border: none;
 }
 
 .mobile-nav-btn img {
