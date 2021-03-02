@@ -140,7 +140,7 @@ class Homepage_Panel {
                 // } else {
                 //     btn.classList.add("active");
                 // }
-                callback(btn, btn_queue);
+                callback(btn);
             });
         });
     }
@@ -190,7 +190,6 @@ Homepage_Panel.prototype.appendTo = function (parentNode, extraNode_html, extraC
 const homepage_vns_url = "./assets/json/vns_collection.json";
 const vns_panel_title = "Visual Narrative Strategies";
 const vns_btn_name_template = "${VNS_tag} (${VNS_num})";
-const vns_btn_class_template = "";
 const vns_panel_name = "scrollSpy";
 let VNS_panel = new Homepage_Panel(homepage_vns_url, vns_panel_title, vns_btn_name_template, 
     vns_panel_name, VNS_click_callback, VNS_scroll_callback);

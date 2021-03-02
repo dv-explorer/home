@@ -1,4 +1,5 @@
 import { VNS_panel, EL_panel } from './hp_panel.js';
+import { MNav, Collapse_Btn } from './hp_mobileNav.js';
 import { init_card_display } from './hp_middle.js';
 import { VideoData_Card } from './video_dataset.js';
 import { downloads_loading } from './downloads.js';
@@ -29,6 +30,9 @@ export const vns_method_to_btn_name = str => {
 window.onload = function () {
     // 定位到tab
     VISIT_PAGE("home", openHomepage_ex);
+    // openVideoDataset();
+    // openDownloads();
+    // openAbout();
 
     // setTimeout(() => 
     //     confirm("    目前 \[Homepage页面\] 正处于在结构整理与重建期，目前卡片信息除新增GIF文件以外已经全部导入。交互功能除GIF放大模态框功能外已全部开启。\n\n注：卡片和筛选栏icon图片将在 本周末 统一调整位置后上传，届时将向官网迁移全部内容，其他视觉和交互优化将会在下周陆续完成。 \n\n    2020\/12\/23")
@@ -84,6 +88,10 @@ function navRelocation(name = "") {
 
 /* page loading methods */
 function openHomepage_ex() {
+    // 页面呈现loading
+    // document.querySelector("main").innerHTML = "";
+
+    // 界面异步加载
     $.ajax({
         // url: "https://jkalan6991.gitee.io/video-explorer/assets/static/homepage_ex.html",
         url: "./assets/static/homepage_ex.html",
@@ -99,6 +107,10 @@ function openHomepage_ex() {
 
 
 function openVideoDataset() {
+    // 页面呈现loading
+    // document.querySelector("main").innerHTML = "";
+
+    // 界面异步加载
     $.ajax({
         // url: "https://jkalan6991.gitee.io/video-explorer/assets/static/videodataset.html",
         url: "./assets/static/videodataset.html",
@@ -114,6 +126,10 @@ function openVideoDataset() {
 
 
 function openDownloads() {
+    // 页面呈现loading
+    // document.querySelector("main").innerHTML = "";
+
+    // 界面异步加载
     $.ajax({
         // url: "https://jkalan6991.gitee.io/video-explorer/assets/static/downloads.html",
         url: "./assets/static/downloads.html",
@@ -129,6 +145,10 @@ function openDownloads() {
 
 
 function openAbout() {
+    // 页面呈现loading
+    // document.querySelector("main").innerHTML = "";
+
+    // 界面异步加载
     $.ajax({
         // url: "https://jkalan6991.gitee.io/video-explorer/assets/static/about.html",
         url: "./assets/static/about.html",
@@ -144,6 +164,7 @@ function openAbout() {
 
 
 function Homepage_ex_loading() {
+    const mobile_nav_node = document.querySelector(".mobile-nav-scrollSpy");
     const sidebar_node = document.getElementById("sidebar-ex");
     const card_display_node = document.getElementById("card-display-ex");
 
@@ -151,9 +172,14 @@ function Homepage_ex_loading() {
     const vns_extraClass_toA_arr = ["${VNS_tag}"];
     const vns_extraAttribute_toA = {href: "#${VNS_tag}"};
     const el_extraClass_toA_arr = ["el-${EL_tag}", "active"];
+    const mn_extraClass_toA_arr = ["${VNS_tag}"];
+    const mn_extraAttribute_toA = {"data-target": "#${VNS_tag}"};
 
+    MNav.fillContainer(mobile_nav_node, mn_extraClass_toA_arr, mn_extraAttribute_toA, vns_method_to_btn_name);
     VNS_panel.appendTo(sidebar_node, vns_extraNode_html, vns_extraClass_toA_arr, vns_extraAttribute_toA, vns_method_to_btn_name);
     EL_panel.appendTo(sidebar_node, "", el_extraClass_toA_arr, {});
+
+    const collapse_btn = new Collapse_Btn('.mobile-nav-btn', '#sidebar-ex', '.mobile-nav-scrollSpy');
 
     init_card_display(card_display_node);
     searchBox_EventListener(card_display_node);
@@ -175,15 +201,17 @@ function searchBox_EventListener(card_display_node = new HTMLElement()) {
     document.querySelector(".searchbox-input").onblur = () => {
         let search_text = document.querySelector(".searchbox-input").value;
         document.querySelector(".searchbox-input").value = search_text ? search_text: "Search";
+        // if(!search_text) {
+        //     init_card_display(card_display_node);
+        //     document.querySelector("input").value = "Search";
+        // }
     }
-    document.querySelector(".searchbox-input").addEventListener('keydown', (event) => {
-        let keyCode =  event.keyCode || event.which;
-        if( keyCode === 13) {
+    document.querySelector(".searchbox-input").onkeydown = () => {
+        if(event.keyCode === 13) {
             let search_text = document.querySelector(".searchbox-input").value;
             init_card_display(card_display_node, search_text);
-            document.querySelector(".searchbox-input").blur();
         }
-    });
+    }
 }
 
 function modal_EventListener () {

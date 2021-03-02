@@ -21,9 +21,9 @@ export const init_card_display = function (card_display_node = new HTMLElement()
     card_display_node.parentElement.scrollTo(0, 3);
 }
 
-export const VNS_click_callback = function (btn, btn_queue) {
+export const VNS_click_callback = function (btn, target = "href") {
     const CARD_DISPLAY_NODE = document.querySelector("#card-display-ex");
-    const AIM_DISPLAY_ID = btn.getAttribute("href");
+    const AIM_DISPLAY_ID = btn.getAttribute(target);
     let page_position = 0;
 
     // if(!btn.classList.contains("focus")) {
@@ -56,12 +56,15 @@ export const VNS_scroll_callback = function (panel_node) {
             let display_top = display_node.offsetTop;
             let display_bottom = display_node.offsetTop + display_node.offsetHeight;
 
-            if(scrollBar_top >= display_top && scrollBar_top < display_bottom) {
+            if((scrollBar_top >= display_top) && (scrollBar_top < display_bottom)) {
                 if(!btn_node.classList.contains("active")) {
                     btn_node.classList.add("active");
-                    // console.log(`ADD ACTIVE: scroll bar top: ${scrollBar_top}, display top: ${display_top}, display bottom: ${display_bottom}`);
                 }
-            } else if(btn_node.classList.contains("active")) {
+                // console.log(`ADD ACTIVE: scroll bar top: ${scrollBar_top}, display top: ${display_top}, display bottom: ${display_bottom}`);
+                return false;
+            }
+            
+            if(btn_node.classList.contains("active")) {
                 btn_node.classList.remove("active");
                 // console.log(`REMOVE ACTIVE: scroll bar top: ${scrollBar_top}, display top: ${display_top}, display bottom: ${display_bottom}`);
             }
@@ -158,4 +161,55 @@ const create_cards = function (display_member = new DisplayQueueMember(), card_d
     card_subject_list.forEach((card_subject, i, subList) => {
         card_subject.appendTo(card_deck_node);
     });
+}
+
+export const MN_callback = function () {
+    const CARD_DISPLAY_NODE = document.querySelector("#card-display-ex");
+    
+    // CARD_DISPLAY_NODE.onscroll = () => {
+    const container_node = document.querySelector(".mobile-nav-scrollSpy");
+    CARD_DISPLAY_NODE.parentElement.addEventListener("scroll", () => {
+
+        // let scrollBar_top = CARD_DISPLAY_NODE.scrollTop + 5 + CARD_DISPLAY_NODE.offsetHeight * 0.5;
+        let scrollBar_top = CARD_DISPLAY_NODE.parentElement.scrollTop + 5 + CARD_DISPLAY_NODE.parentElement.offsetHeight * 0.5;
+        
+        container_node.querySelectorAll(".mobile-nav-item").forEach((item_node, i, itemList) => {
+            // console.log(btn_node)
+            let display_id = item_node.getAttribute("data-target");
+            let display_node = document.querySelector(display_id);
+            let display_top = display_node.offsetTop;
+            let display_bottom = display_node.offsetTop + display_node.offsetHeight;
+
+            if((scrollBar_top > display_top) && (scrollBar_top < display_bottom)) {
+                if(!item_node.classList.contains("active")) {
+                    item_node.classList.add("active");
+                    centralize_item(item_node, container_node);
+                }
+                // console.log(`ADD ACTIVE: scroll bar top: ${scrollBar_top}, display top: ${display_top}, display bottom: ${display_bottom}`);
+                return false;
+            }
+            
+            if(item_node.classList.contains("active")) {
+                item_node.classList.remove("active");
+                // console.log(`REMOVE ACTIVE: scroll bar top: ${scrollBar_top}, display top: ${display_top}, display bottom: ${display_bottom}`);
+            }
+        });
+    });
+
+    container_node.querySelectorAll(".mobile-nav-item").forEach((item_node, i, itemList) => {
+        item_node.addEventListener('click', () => {
+            VNS_click_callback(item_node, "data-target");
+        });
+    });
+
+    container_node.parentElement.scrollTo(0, 0);
+}
+
+const centralize_item = function (item_node, container_node) {
+    let container_length = container_node.offsetWidth;
+    let item_x = item_node.offsetLeft - container_node.offsetLeft;
+    let bias = item_node.offsetWidth * 0.5 - container_length * 0.5;
+
+    // container_node.scrollTo(item_x + bias, 0);
+    $(container_node).animate({'scrollLeft': parseInt(item_x + bias)}, 150);
 }

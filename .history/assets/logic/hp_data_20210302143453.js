@@ -2,8 +2,8 @@
 
 import { Homepage_Card, Homepage_Reminder } from './hp_card.js';
 
-const homepage_vns_url = "./assets/json/vns_collection.json";
-const homepage_cards_url = "./assets/json/anicard_dataset.json";
+const homepage_vns_url = "/assets/json/vns_collection.json";
+const homepage_cards_url = "/assets/json/anicard_dataset.json";
 const _HEAD_SIGN = "HEAD";
 
 class DisplayQueue {
@@ -274,7 +274,7 @@ class CardsFilter {
         return result;
     }
 
-    filtering_method (obj = {}, unwilling = []) {
+    filtering_method (obj = {}) {
         let trans_kw = this._regex_keywords(this._keywords);
         if(this._spec_tag.length > 0) {
             return obj[this._spec_tag].search(trans_kw) + 1; // number
@@ -282,9 +282,6 @@ class CardsFilter {
         
         if(Object.keys(obj).length > 0) {
             return Object.keys(obj).some((key, i, keyArray) => {
-                if(unwilling.indexOf(key) >= 0) {
-                    return false;
-                }
                 if((typeof obj[key] === "string") || (typeof obj[key] === "number")) {
                     return (obj[key] + "").search(trans_kw) >= 0;
                 }
