@@ -200,12 +200,12 @@
         "AVT_tag": "",
         "how": "Reduce the speed of motion and cause a sense of time-expanding.",
         "why": "Slow-down can add retardation to the story, leaving the audience to fear what might lie ahead. ",
-        "eg_title": "What is the True UK Cost of the Afghanistan War?",
-        "eg_source": "Countfire",
-        "eg_url": "https://www.youtube.com/watch?v=X0Bkg8zgoYQ&feature=emb_title",
-        "eg_year": "2011",
+        "eg_title": "200 Countries, 200 Years",
+        "eg_source": "BBC",
+        "eg_url": "https://www.youtube.com/watch?v=jbkSRLYSojo",
+        "eg_year": "2010",
         "eg_category": "Social Sciences",
-        "eg_subcategory": "Political Science"
+        "eg_subcategory": "Human Geography"
     },
     {
         "card_id": "13",
@@ -360,11 +360,12 @@
         "AVT_tag": "",
         "how": "Let the camera change smoothly from a close-up shot to a long shot; also called Wide-angle lens or Push-away.",
         "why": "When zooming out, more graphical elements would enter into the canvas, thus leading to a new scene and advancing the story. ",
-        "eg_title": "Why are Some People Left-handed?",
-        "eg_source": "TED-Ed",
-        "eg_url": "https://www.youtube.com/watch?v=TGLYcYCm2FM",
+        "eg_title": "Earthquake Magnitude Power Comparison",
+        "eg_source": "Reigarw Comparisons",
+        "eg_url": "https://www.youtube.com/watch?v=DWFxIgv3Jc0",
+        "eg_year": "2017",
         "eg_category": "Natural Sciences",
-        "eg_subcategory": "Biology"
+        "eg_subcategory": "Earth Science"
     },
     {
         "card_id": "22",
@@ -423,10 +424,10 @@
         "AVT_tag": "applicable to visualizations that have axes, e.g., bar charts, line charts",
         "how": "Comparing a range of data values by selecting the area they are located in.",
         "why": "It shows the value difference of a certain range.",
-        "eg_title": "The Numbers Game: Do The Rich Get All The Gains?",
-        "eg_source": "PolicyEd",
-        "eg_url": "https://www.youtube.com/watch?v=GcdqGUWj2oo&list=WL&index=19",
-        "eg_year": "2019",
+        "eg_title": "How Tax Breaks Help the Rich?",
+        "eg_source": "Vox",
+        "eg_url": "https://www.youtube.com/watch?v=k1vE_LVBx4s&list=WL&index=8",
+        "eg_year": "2017",
         "eg_category": "Social Sciences",
         "eg_subcategory": "Economics"
     },
@@ -615,12 +616,12 @@
         "AVT_tag": "",
         "how": "Increase the speed of motion and thus cause a sense of time compression.",
         "why": "A quick speed can elicit a sense of excitement and make the audience eager about what is happening next.",
-        "eg_title": "Because the World Needs to Know",
-        "eg_source": "350.org",
-        "eg_url": "https://www.youtube.com/watch?v=s5kg1oOq9tY",
-        "eg_year": "2008",
+        "eg_title": "200 Countries, 200 Years",
+        "eg_source": "BBC",
+        "eg_url": "https://www.youtube.com/watch?v=jbkSRLYSojo",
+        "eg_year": "2010",
         "eg_category": "Social Sciences",
-        "eg_subcategory": "Earth Science"
+        "eg_subcategory": "Human Geography"
     },
     {
         "card_id": "36",
@@ -743,12 +744,12 @@
         "AVT_tag": "",
         "how": "Tremble or vibrate.",
         "why": "An unbalanced, nearly tipping over shake can lead to tension and suspense. ",
-        "eg_title": "Electric Cars Could Wreak Havoc on Oil Markets Within a Decade",
-        "eg_source": "Bloomberg",
-        "eg_url": "https://www.youtube.com/watch?v=jwHN6QQWv2g&list=WL&index=124",
-        "eg_year": "2016",
-        "eg_category": "Applied Sciences",
-        "eg_subcategory": "Engineering and Technology"
+        "eg_title": "Donald Trump's $20 Trillion Problem",
+        "eg_source": "Visual Capitalist",
+        "eg_url": "https://www.youtube.com/watch?v=tgpfswDHA_Y",
+        "eg_year": "2017",
+        "eg_category": "Social Sciences",
+        "eg_subcategory": "Economics"
     },
     {
         "card_id": "42",
@@ -759,12 +760,12 @@
         "AVT_tag": "",
         "how": "Tremble or vibrate.",
         "why": "When inserted to a originally peaceful scene, a shake can bring sudden change to the story and thus achieve a plot twist.",
-        "eg_title": "Because the World Needs to Know",
-        "eg_source": "350.org",
-        "eg_url": "https://www.youtube.com/watch?v=s5kg1oOq9tY",
-        "eg_year": "2008",
+        "eg_title": "Donald Trump's $20 Trillion Problem",
+        "eg_source": "Visual Capitalist",
+        "eg_url": "https://www.youtube.com/watch?v=tgpfswDHA_Y",
+        "eg_year": "2017",
         "eg_category": "Social Sciences",
-        "eg_subcategory": "Earth Science"
+        "eg_subcategory": "Economics"
     },
     {
         "card_id": "43",
