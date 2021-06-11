@@ -342,6 +342,15 @@ footer .footer-text {
   }
 }
 
+.navbar-language {
+  font-size: 1rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  position: relative;
+  /* vertical active sign under tabs */
+}
+
 .navbar-ul .navbar-item {
   font-size: 1rem;
   font-weight: 400;
