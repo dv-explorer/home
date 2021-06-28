@@ -1751,6 +1751,7 @@ footer .footer-text {
 .downloads-card-text.disabled {
   pointer-events: none;
   opacity: 0.65;
+  text-decoration: none;
 }
 
 .modal-content {
